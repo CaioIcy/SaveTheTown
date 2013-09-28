@@ -8,7 +8,7 @@ function initialize() {
 }
 
 function update(){
-	player.x+=player.speedX;
+	player.update();
 }
 
 function render(){
