@@ -19,4 +19,10 @@ var GATE_4_X_POSITION = 356;
 var GATE_4_Y_POSITION = 28;
 var GATE_HEALTH = 100;
 
-var playerWalkingInCircle = false;
+
+//flag of the moviment
+//1 - up
+//2 - left
+//3 - down
+//4 - right
+var playerWalkingInCircle = 1;

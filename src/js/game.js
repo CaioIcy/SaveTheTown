@@ -15,8 +15,7 @@ function render(){
 	
 	d.drawImage(background, 0, 0);
 	for(i=0;i<4;i++){
-		d.fillStyle="red";
-		d.fillRect(gate[i].x,gate[i].y,78,78);
+		gate[i].render();
 	}
 	
 	d.fillStyle="blue";
@@ -25,7 +24,22 @@ function render(){
 	d.fillText("X: "+ Math.cos(player.posMovementStart) + ", Y: " + Math.sin(player.posMovementStart), 20,20);
 	d.fillText("X real: " + player.posX +", Y real: "+ player.posY, 20, 50); 
 	
-	if (playerWalkingInCircle){
+	if (playerWalkingInCircle==1 && player.posX.toFixed(1) != 390.0 && player.posY.toFixed(1) != 60.0){
+		player.posX = (Math.cos(player.posMovementStart) * player.amplitudeX) + X_SHIFT;
+		player.posY = (Math.sin(player.posMovementStart) * player.amplitudeY) + Y_SHIFT;
+		player.posMovementStart += player.speed;
+	}
+	else if (playerWalkingInCircle==2 && player.posX.toFixed(1) != 213.8 && player.posY.toFixed(1) != 432.2){
+		player.posX = (Math.cos(player.posMovementStart) * player.amplitudeX) + X_SHIFT;
+		player.posY = (Math.sin(player.posMovementStart) * player.amplitudeY) + Y_SHIFT;
+		player.posMovementStart += player.speed;
+	}
+	else if (playerWalkingInCircle==3 && player.posX.toFixed(1) != 390.0 && player.posY.toFixed(1) != 520.0){
+		player.posX = (Math.cos(player.posMovementStart) * player.amplitudeX) + X_SHIFT;
+		player.posY = (Math.sin(player.posMovementStart) * player.amplitudeY) + Y_SHIFT;
+		player.posMovementStart += player.speed;
+	}
+	else if (playerWalkingInCircle==4 && player.posX.toFixed(1) != 565.0 && player.posY.toFixed(1) != 439.2){
 		player.posX = (Math.cos(player.posMovementStart) * player.amplitudeX) + X_SHIFT;
 		player.posY = (Math.sin(player.posMovementStart) * player.amplitudeY) + Y_SHIFT;
 		player.posMovementStart += player.speed;
