@@ -16,14 +16,14 @@ function keyInput(){
 
 	//left
 	if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
-		walk = true;
+		
 	}
 	else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 	}
 	
 	//up
 	if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-		SET=1;
+		
 	}
 	else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
 	}
