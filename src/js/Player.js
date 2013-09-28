@@ -8,25 +8,26 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, spr
 	this.posX = posX;
 	this.posY = posY;
 	this.sprite = sprite;
+	this.movingToGate = 0;
 	
 	//Update
 	this.update = function(){
-		if (playerWalkingInCircle==1 && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
+		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			this.posMovementStart += this.speed;
 		}
-		else if (playerWalkingInCircle==2 && this.posX.toFixed(1) != 213.8 && this.posY.toFixed(1) != 432.2){
+		else if (this.movingToGate==GOLD_GATE && this.posX.toFixed(1) != 213.8 && this.posY.toFixed(1) != 432.2){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			this.posMovementStart += this.speed;
 		}
-		else if (playerWalkingInCircle==3 && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 520.0){
+		else if (this.movingToGate==BLUE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 520.0){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			this.posMovementStart += this.speed;
 		}
-		else if (playerWalkingInCircle==4 && this.posX.toFixed(1) != 565.0 && this.posY.toFixed(1) != 439.2){
+		else if (this.movingToGate==RED_GATE && this.posX.toFixed(1) != 565.0 && this.posY.toFixed(1) != 439.2){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			this.posMovementStart += this.speed;

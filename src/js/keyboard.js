@@ -13,41 +13,36 @@ window.onkeyup = function(e){
 };
 
 var pressedKeys = [];
-var moving = false;
 var paused = false;
 
 function updateKeyInput(){
 
+	//up
+	if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
+		player.movingToGate = 1;
+	}
+	else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
+	}
+
 	//left
 	if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
-		playerWalkingInCircle = 2;
-		moving = true;
+		player.movingToGate = 2;
 	}
 	else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 	}
 	
-	//up
-	if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-		playerWalkingInCircle = 1;
-		moving = true;
+	//down
+	if(pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
+		player.movingToGate = 3;
 	}
-	else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
+	else if(!pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
 	}
 	
 	//right
 	if(pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-		playerWalkingInCircle = 4;
-		moving = true;
+		player.movingToGate = 4;
 	}
 	else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-	}
-	
-	//down
-	if(pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
-		playerWalkingInCircle = 3;
-		moving = true;
-	}
-	else if(!pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
 	}
 	
 }
