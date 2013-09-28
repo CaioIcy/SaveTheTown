@@ -2,7 +2,7 @@ canvas=document.getElementById("canvas");
 d = canvas.getContext("2d");
 
 function initialize() {
-	player = new Player(30,0,2);
+	player = new Player(220,210,0.005,0);
 	gate = new Array();
 	gate[0] = new Gate(X_POSITION_GATE_1,Y_POSITION_GATE_1,HEALTH_GATE);
 	gate[1] = new Gate(X_POSITION_GATE_2,Y_POSITION_GATE_2,HEALTH_GATE);
@@ -14,6 +14,7 @@ function update(){
 	player.update();
 }
 
+
 function render(){
 
 	d.fillStyle="#F5DEB3";
@@ -21,9 +22,9 @@ function render(){
 	
 	d.drawImage(background, 0, 0);
 	
-	d.clearRect(player.x-player.speedX,player.y,100,100);
-	d.fillStyle="black";
-	d.fillRect(player.x,player.y,100,100);
+	d.fillStyle="blue";
+	d.fillRect(Math.cos(player.position)*player.x + 345,Math.sin(player.position)*player.y + 250,100,100);
+	player.position+=player.speed;
 	
 	for(i=0;i<4;i++){
 		d.fillStyle="red";
