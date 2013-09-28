@@ -13,12 +13,15 @@ window.onkeyup = function(e){
 };
 
 var pressedKeys = [];
+var moving = false;
+var paused = false;
 
 function updateKeyInput(){
 
 	//left
 	if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 		playerWalkingInCircle = 2;
+		moving = true;
 	}
 	else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 	}
@@ -26,6 +29,7 @@ function updateKeyInput(){
 	//up
 	if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
 		playerWalkingInCircle = 1;
+		moving = true;
 	}
 	else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
 	}
@@ -33,6 +37,7 @@ function updateKeyInput(){
 	//right
 	if(pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
 		playerWalkingInCircle = 4;
+		moving = true;
 	}
 	else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
 	}
@@ -40,8 +45,24 @@ function updateKeyInput(){
 	//down
 	if(pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
 		playerWalkingInCircle = 3;
+		moving = true;
 	}
 	else if(!pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
 	}
 	
+}
+
+function updatePause(){
+	if(pressedKeys[VK_SPACEBAR] && !isPressing){
+		isPressing = true;
+		if(!paused){
+			paused = true;
+		}
+		else{
+			paused = false;
+		}
+	}
+	else if(!pressedKeys[VK_SPACEBAR]){
+		isPressing = false;
+	}
 }
