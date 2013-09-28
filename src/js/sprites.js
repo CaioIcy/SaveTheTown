@@ -10,3 +10,5 @@ var purple_gate = new Image();
 purple_gate.src = "res/images/purple_gate.png";
 var red_gate = new Image();
 red_gate.src = "res/images/red_gate.png";
+var playerSprite = new Image();
+playerSprite.src = "res/images/player.png";
