@@ -17,7 +17,8 @@ function update(){
 
 function render(){
 	if(!paused){
-		d.drawImage(background, 0, 0);
+		d.drawImage(background_grass, 0, 0);
+		d.drawImage(city, 149, 48);
 		
 		//render player
 		player.render();
