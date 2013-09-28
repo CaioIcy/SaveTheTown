@@ -5,7 +5,7 @@
 
 #define JAMMED_FILE "Z_jammed.js"
 
-#define NUMBER_OF_JS 11
+#define NUMBER_OF_JS 12
 
 #define file0 "sprites.js"
 #define file1 "constants.js"
@@ -14,10 +14,11 @@
 #define file4 "Gate.js"
 #define file5 "Enemy.js"
 #define file6 "Player.js"
-#define file7 "util.js"
-#define file8 "initialize.js"
-#define file9 "Keyboard.js"
-#define file10 "game.js"
+#define file7 "City.js"
+#define file8 "util.js"
+#define file9 "initialize.js"
+#define file10 "Keyboard.js"
+#define file11 "game.js"
 
 #define IF_FILE0 if(i==0) {tempNode->filename = file0;}
 #define IF_FILE1 if(i==1) {tempNode->filename = file1;}
@@ -30,6 +31,7 @@
 #define IF_FILE8 if(i==8) {tempNode->filename = file8;}
 #define IF_FILE9 if(i==9) {tempNode->filename = file9;}
 #define IF_FILE10 if(i==10) {tempNode->filename = file10;}
+#define IF_FILE11 if(i==11) {tempNode->filename = file11;}
 
 typedef struct _NODE{
 	char *filename;
@@ -99,6 +101,7 @@ int main(){
 			IF_FILE8
 			IF_FILE9
 			IF_FILE10
+			IF_FILE11
 			
 		}
 	}
@@ -117,13 +120,13 @@ int main(){
 	}
 	
 	//GAMBIARRA LEVEL 100
-	fin = fopen(file10, "rb");
+	fin = fopen(file11, "rb");
 	assert(fin!=NULL);
-	write(fin, fout, file10);
+	write(fin, fout, file11);
 	
 	
 	fclose(fin);
 	fclose(fout);
-	
+
 	return 0;
 }

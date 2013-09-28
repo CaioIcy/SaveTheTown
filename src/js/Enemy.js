@@ -17,7 +17,7 @@ function Enemy( x, y, speed, radius, sprite) {
 	//Update
 	this.update = function(){
 		
-		//if(this.move){
+		if(this.move){
 		
 			if(this.findGate()==PURPLE_GATE){
 			
@@ -83,7 +83,7 @@ function Enemy( x, y, speed, radius, sprite) {
 					this.y-=this.speed;
 				}
 			}
-		
+		}
 	};
 	
 	//Render

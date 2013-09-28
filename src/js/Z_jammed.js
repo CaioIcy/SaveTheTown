@@ -182,7 +182,6 @@ function circleCollision(circle1, circle2){
 	var dy = circle2.y - circle1.y;
 	var distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
 		
-		//alert("Dist: " + distance + ", Raios: " + circle1.radius + circle2.radius);
 	if (distance < (circle1.radius + circle2.radius)){
 
 		return true;
@@ -218,14 +217,13 @@ function Enemy( x, y, speed, radius, sprite) {
 	
 	this.verifyCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
-			alert("t6este");
 				this.move = false;
 			}
 	}
 	//Update
 	this.update = function(){
 		
-		//if(this.move){
+		if(this.move){
 		
 			if(this.findGate()==PURPLE_GATE){
 			
@@ -291,7 +289,7 @@ function Enemy( x, y, speed, radius, sprite) {
 					this.y-=this.speed;
 				}
 			}
-		
+		}
 	};
 	
 	//Render
@@ -362,7 +360,16 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	};
 	
 }
-//This script contains anything
+//City Class
+
+function City(x , y , radius) {
+
+	this.x = x;
+	this.y = y;
+	this.radius = radius;
+	    
+}       
+        //This script contains anything
 
 function xText(){
 	d.fillStyle="blue";
@@ -435,8 +442,8 @@ function update(){
 
 	keyboard.updateKeyInput();
 	player.update();
-	//for(i=0;i<4;i++)
-		enemy.verifyCollision(enemy,gate[PURPLE_GATE-1]);
+	for(i=0;i<4;i++)
+		enemy.verifyCollision(enemy,gate[i]);
 	enemy.update();
 	while(enemy.posX<200 || enemy.posX>600){
 		enemy.posX = randomize(60)*10;
