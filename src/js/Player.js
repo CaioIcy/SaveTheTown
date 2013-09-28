@@ -1,4 +1,5 @@
 //Player Class
+"use strict";
 
 function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, sprite) {
 	this.amplitudeX = amplitudeX;

@@ -1,4 +1,5 @@
 //This script contains all the ASCII values from the keyboard
+"use strict";
 
 //numbers (keyboard)
 const VK_0 = 48;

@@ -1,7 +1,8 @@
 //This script is contains the update and render method of the game
+"use strict";
 
-canvas=document.getElementById("canvas");
-d = canvas.getContext("2d");
+var canvas = document.getElementById("canvas");
+var d = canvas.getContext("2d");
 
 function update(){
 	updatePause();

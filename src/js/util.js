@@ -1,4 +1,5 @@
 //This script contains anything
+"use strict";
 
 function xText(){
 	d.fillStyle="blue";

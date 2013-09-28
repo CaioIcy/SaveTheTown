@@ -1,4 +1,5 @@
 //This script contains all the keyboard actions
+"use strict";
 
 window.onkeydown = function(e){
 	e=e||event;
@@ -16,6 +17,8 @@ var pressedKeys = [];
 var paused = false;
 
 function updateKeyInput(){
+
+	var isPressing = false;
 
 	//up
 	if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
@@ -48,6 +51,8 @@ function updateKeyInput(){
 }
 
 function updatePause(){
+	var isPressing = false;
+
 	if(pressedKeys[VK_SPACEBAR] && !isPressing){
 		isPressing = true;
 		if(!paused){

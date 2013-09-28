@@ -1,4 +1,5 @@
 //Gate Class
+"use strict";
 
 function Gate(x,y,hp,sprite){
 
