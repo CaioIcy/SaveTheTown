@@ -14,7 +14,7 @@ function Enemy( posX, posY, speed, sprite) {
 	
 	//Render
 	this.render = function(){
-		
+		d.fillRect(this.posX, this.posY,30,30);
 	};
 	
 }
