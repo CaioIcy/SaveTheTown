@@ -1,4 +1,4 @@
-function Base(){
+function Gate(x,y,hp){
 
 	this.x=x;
 	this.y=y;
