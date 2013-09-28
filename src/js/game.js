@@ -27,6 +27,12 @@ function render(){
 			gate[i].render();
 		}
 		
+		d.fillRect(GATE_1_X_CENTER,GATE_1_Y_CENTER,10,10);
+		d.fillRect(GATE_2_X_CENTER,GATE_2_Y_CENTER,10,10);
+		d.fillRect(GATE_3_X_CENTER,GATE_3_Y_CENTER,10,10);
+		d.fillRect(GATE_4_X_CENTER,GATE_4_Y_CENTER,10,10);
+		
+		
 		xText();
 			
 	}

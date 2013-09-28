@@ -9,16 +9,24 @@ const MOVEMENT_START_POSITION = (3*Math.PI)/2;
 const X_SHIFT = 390;
 const Y_SHIFT = 290;
 
-var GATE_1_X_POSITION = 176;
-var GATE_1_Y_POSITION = 411;
-var GATE_2_X_POSITION = 356;
-var GATE_2_Y_POSITION = 497;
-var GATE_3_X_POSITION = 536;
-var GATE_3_Y_POSITION = 411;
-var GATE_4_X_POSITION = 356;
-var GATE_4_Y_POSITION = 28;
-var GATE_HEALTH = 100;
+const GATE_1_X_POSITION = 176;
+const GATE_1_Y_POSITION = 411;
+const GATE_2_X_POSITION = 356;
+const GATE_2_Y_POSITION = 497;
+const GATE_3_X_POSITION = 536;
+const GATE_3_Y_POSITION = 411;
+const GATE_4_X_POSITION = 356;
+const GATE_4_Y_POSITION = 28;
+const GATE_HEALTH = 100;
 
+const GATE_1_X_CENTER = 217;
+const GATE_1_Y_CENTER = 452;
+const GATE_2_X_CENTER = 397;
+const GATE_2_Y_CENTER = 538;
+const GATE_3_X_CENTER = 577;
+const GATE_3_Y_CENTER = 452;
+const GATE_4_X_CENTER = 397;
+const GATE_4_Y_CENTER = 70;
 
 //flag of the moviment
 //1 - up
