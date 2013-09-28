@@ -8,7 +8,7 @@ function update(){
 	if(!paused){
 		updateKeyInput();
 		player.update();
-		enemy.findGate();
+		enemy.update();
 	}
 	else{
 		//do nothing
