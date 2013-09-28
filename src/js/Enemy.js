@@ -1,69 +1,75 @@
 //Enemy Class
 
-function Enemy( posX, posY, speed, sprite) {
+function Enemy( posX, posY, speed, radius, sprite) {
 
 	this.speed = speed;
 	this.posX = posX;
 	this.posY = posY;
 	this.sprite = sprite;
+	this.radius = radius;
 	
+	move = true;
 	//Update
 	this.update = function(){
-	
-		if(this.findGate()==PURPLE_GATE){
-			if(this.posX<(PURPLE_GATE_X_CENTER)){
-				this.posX+=this.speed;
+		for(i=0;i<gate.length;i++)
+			if(!circleCollision(this,gate[i]))
+				move = false
+		if(move){
+			if(this.findGate()==PURPLE_GATE){
+				if(this.posX<(PURPLE_GATE_X_CENTER)){
+					this.posX+=this.speed;
+				}
+				else {
+					this.posX-=this.speed;
+				}
+				if(this.posY<(PURPLE_GATE_Y_CENTER)){
+					this.posY+=this.speed;
+				}
+				else {
+					this.posY-=this.speed;
+				}
+			}
+			else if(this.findGate()==GOLD_GATE){
+				if(this.posX<(GOLD_GATE_X_CENTER)){
+					this.posX+=this.speed;
+				}
+				else {
+					this.posX-=this.speed;
+				}
+				if(this.posY<(GOLD_GATE_Y_CENTER)){
+					this.posY+=this.speed;
+				}
+				else {
+					this.posY-=this.speed;
+				}
+			}
+			else if(this.findGate()==BLUE_GATE){
+				if(this.posX<(BLUE_GATE_X_CENTER)){
+					this.posX+=this.speed;
+				}
+				else {
+					this.posX-=this.speed;
+				}
+				if(this.posY<(BLUE_GATE_Y_CENTER)){
+					this.posY+=this.speed;
+				}
+				else {
+					this.posY-=this.speed;
+				}
 			}
 			else {
-				this.posX-=this.speed;
-			}
-			if(this.posY<(PURPLE_GATE_Y_CENTER)){
-				this.posY+=this.speed;
-			}
-			else {
-				this.posY-=this.speed;
-			}
-		}
-		else if(this.findGate()==GOLD_GATE){
-			if(this.posX<(GOLD_GATE_X_CENTER)){
-				this.posX+=this.speed;
-			}
-			else {
-				this.posX-=this.speed;
-			}
-			if(this.posY<(GOLD_GATE_Y_CENTER)){
-				this.posY+=this.speed;
-			}
-			else {
-				this.posY-=this.speed;
-			}
-		}
-		else if(this.findGate()==BLUE_GATE){
-			if(this.posX<(BLUE_GATE_X_CENTER)){
-				this.posX+=this.speed;
-			}
-			else {
-				this.posX-=this.speed;
-			}
-			if(this.posY<(BLUE_GATE_Y_CENTER)){
-				this.posY+=this.speed;
-			}
-			else {
-				this.posY-=this.speed;
-			}
-		}
-		else {
-			if(this.posX<(RED_GATE_X_CENTER)){
-				this.posX+=this.speed;
-			}
-			else {
-				this.posX-=this.speed;
-			}
-			if(this.posY<(RED_GATE_Y_CENTER)){
-				this.posY+=this.speed;
-			}
-			else {
-				this.posY-=this.speed;
+				if(this.posX<(RED_GATE_X_CENTER)){
+					this.posX+=this.speed;
+				}
+				else {
+					this.posX-=this.speed;
+				}
+				if(this.posY<(RED_GATE_Y_CENTER)){
+					this.posY+=this.speed;
+				}
+				else {
+					this.posY-=this.speed;
+				}
 			}
 		}
 	};

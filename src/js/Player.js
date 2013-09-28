@@ -1,7 +1,7 @@
 //Player Class
 "use strict";
 
-function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, sprite) {
+function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, radius, sprite) {
 	this.amplitudeX = amplitudeX;
 	this.amplitudeY = amplitudeY;
 	this.speed = speed;
@@ -10,6 +10,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, spr
 	this.posY = posY;
 	this.sprite = sprite;
 	this.movingToGate = 0;
+	this.radius = radius;
 	
 	//Update
 	this.update = function(){
