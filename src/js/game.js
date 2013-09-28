@@ -48,7 +48,8 @@ function render(){
 	}
 	
 	xText();	
-
+	time();
+	alert(timeCount);
 }
 
 window.setInterval("update()",60/1000);

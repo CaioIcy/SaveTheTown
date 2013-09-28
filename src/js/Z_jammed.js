@@ -415,6 +415,16 @@ function drawBar(posx, posy, size, width, state, horizontal, colorInside){
 	}
 	d.fillStyle="black";
 }
+
+var timeCounter=0;
+var count = 0;
+function time(){
+	count++
+	if(count%1000==0){
+		timeCounter++;
+		alert(timeCounter);
+	}
+}
 //This script will be the game initializer
 
 var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
@@ -532,7 +542,8 @@ function render(){
 	}
 	
 	xText();	
-
+	time();
+	alert(timeCount);
 }
 
 window.setInterval("update()",60/1000);

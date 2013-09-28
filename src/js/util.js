@@ -24,3 +24,13 @@ function drawBar(posx, posy, size, width, state, horizontal, colorInside){
 	}
 	d.fillStyle="black";
 }
+
+var timeCounter=0;
+var count = 0;
+function time(){
+	count++
+	if(count%1000==0){
+		timeCounter++;
+		alert(timeCounter);
+	}
+}
