@@ -3,8 +3,8 @@
 
 var background_grass = new Image();
 background_grass.src = "res/images/bg_grass.png";
-var city = new Image();
-city.src = "res/images/city.png";
+var spriteCity = new Image();
+spriteCity.src = "res/images/city.png";
 var blue_gate = new Image();
 blue_gate.src = "res/images/blue_gate.png";
 var gold_gate = new Image();
@@ -35,9 +35,14 @@ var PLAYER_RADIUS = 14;
 
 //Enemies constants
 var ENEMY_STARTING_X = 30;
-var ENEMY_STARTING_Y = 30;
+var ENEMY_STARTING_Y = 530;
 var ENEMY_SPEED = 1;
 var ENEMY_RADIUS = 6;
+
+//City constants
+var CITY_STARTING_X = 30;
+var CITY_STARTING_Y = 30;
+var CITY_RADIUS = 6;
 
 //Gates constants
 var GOLD_GATE_X_POSITION = 176;
@@ -215,9 +220,14 @@ function Enemy( x, y, speed, radius, sprite) {
 	this.radius = radius;
 	this.move = true;
 	
-	this.verifyCollision = function(obj1,obj2){
+	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
 				this.move = false;
+			}
+	}
+	this.verifyCityCollision = function(obj1,obj2){
+			if(circleCollision(obj1,obj2)){
+				alert("oi");
 			}
 	}
 	//Update
@@ -383,6 +393,7 @@ function randomize(limite){
 
 var player = new Player(AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
 var enemy = new Enemy(ENEMY_STARTING_X,ENEMY_STARTING_Y,ENEMY_SPEED,ENEMY_RADIUS,troll);
+var city = new City(CITY_STARTING_X,CITY_STARTING_Y,CITY_RADIUS);
 
 var gate = new Array();
 
@@ -442,8 +453,10 @@ function update(){
 
 	keyboard.updateKeyInput();
 	player.update();
-	for(i=0;i<4;i++)
-		enemy.verifyCollision(enemy,gate[i]);
+	for(i=0;i<4;i++){
+		enemy.verifyGateCollision(enemy,gate[i]);
+	}
+	enemy.verifyCityCollision(enemy,city);
 	enemy.update();
 	while(enemy.x<200 || enemy.x>600){
 		enemy.x = randomize(60)*10;
@@ -453,7 +466,7 @@ function update(){
 
 function render(){
 	d.drawImage(background_grass, 0, 0);
-	d.drawImage(city, 149, 48);
+	d.drawImage(spriteCity, 149, 48);
 	
 	//render player
 	player.render();

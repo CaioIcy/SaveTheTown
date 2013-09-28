@@ -10,8 +10,9 @@ function update(){
 	keyboard.updateKeyInput();
 	player.update();
 	for(i=0;i<4;i++){
-		enemy.verifyCollision(enemy,gate[i]);
+		enemy.verifyGateCollision(enemy,gate[i]);
 	}
+	enemy.verifyCityCollision(enemy,city);
 	enemy.update();
 	while(enemy.x<200 || enemy.x>600){
 		enemy.x = randomize(60)*10;
@@ -21,7 +22,7 @@ function update(){
 
 function render(){
 	d.drawImage(background_grass, 0, 0);
-	d.drawImage(city, 149, 48);
+	d.drawImage(spriteCity, 149, 48);
 	
 	//render player
 	player.render();

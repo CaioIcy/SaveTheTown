@@ -9,9 +9,14 @@ function Enemy( x, y, speed, radius, sprite) {
 	this.radius = radius;
 	this.move = true;
 	
-	this.verifyCollision = function(obj1,obj2){
+	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
 				this.move = false;
+			}
+	}
+	this.verifyCityCollision = function(obj1,obj2){
+			if(circleCollision(obj1,obj2)){
+				alert("oi");
 			}
 	}
 	//Update

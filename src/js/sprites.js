@@ -2,8 +2,8 @@
 
 var background_grass = new Image();
 background_grass.src = "res/images/bg_grass.png";
-var city = new Image();
-city.src = "res/images/city.png";
+var spriteCity = new Image();
+spriteCity.src = "res/images/city.png";
 var blue_gate = new Image();
 blue_gate.src = "res/images/blue_gate.png";
 var gold_gate = new Image();
