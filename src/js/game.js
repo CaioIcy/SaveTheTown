@@ -2,7 +2,7 @@ canvas=document.getElementById("canvas");
 d = canvas.getContext("2d");
 
 function initialize() {
-	player = new Player(220,210,0.005,0);
+	player = new Player(230,230,0.001,4.71,390,60);
 	gate = new Array();
 	gate[0] = new Gate(X_POSITION_GATE_1,Y_POSITION_GATE_1,HEALTH_GATE);
 	gate[1] = new Gate(X_POSITION_GATE_2,Y_POSITION_GATE_2,HEALTH_GATE);
@@ -11,6 +11,7 @@ function initialize() {
 }
 
 function update(){
+	keyInput();
 	player.update();
 }
 
@@ -21,15 +22,25 @@ function render(){
 	d.fillRect(0,0,canvas.width,canvas.height);
 	
 	d.drawImage(background, 0, 0);
-	
-	d.fillStyle="blue";
-	d.fillRect(Math.cos(player.position)*player.x + 345,Math.sin(player.position)*player.y + 250,100,100);
-	player.position+=player.speed;
-	
 	for(i=0;i<4;i++){
 		d.fillStyle="red";
 		d.fillRect(gate[i].x,gate[i].y,78,78);
 	}
+	
+	d.fillStyle="blue";
+	
+
+
+	d.fillRect(player.posX, player.posY, 20, 20);
+	d.fillText("X: "+ Math.cos(player.position) + ", Y: " + Math.sin(player.position), 20,20);
+	d.fillText("X real: " + player.posX +", Y real: "+ player.posY, 20, 50); 
+	
+	if (walk){
+		player.posX = (Math.cos(player.position)*player.x + 390);
+		player.posY = (Math.sin(player.position)*player.y + 290);
+		player.position+=player.speed;
+	}
+	
 }
 
 window.onload=initialize;
