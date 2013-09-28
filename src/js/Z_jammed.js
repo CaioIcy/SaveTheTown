@@ -34,8 +34,8 @@ var Y_SHIFT = 290;
 var PLAYER_RADIUS = 14;
 
 //Enemies constants
-var ENEMY_STARTING_X = 30;
-var ENEMY_STARTING_Y = 530;
+var ENEMY_STARTING_X = -300;
+var ENEMY_STARTING_Y = 610;
 var ENEMY_SPEED = 1;
 var ENEMY_RADIUS = 6;
 
@@ -391,16 +391,19 @@ function randomize(limite){
 }//This script will be the game initializer
 
 var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
-var enemy = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll);
+
+var enemy = new Array();
+	for(i=0;i<10;i++){
+		enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll);
+	}
+
 var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
 
 var gate = new Array();
-
 gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate);
 gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate);
 gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate);
 gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate);
-
 //Keyboard Class
 //This script contains all the keyboard actions
 function Keyboard(){
@@ -450,17 +453,27 @@ var keyboard = new Keyboard();
 
 function update(){
 
+	//keyboard update
 	keyboard.updateKeyInput();
+	
+	//player update
 	player.update();
-	for(i=0;i<4;i++){
-		enemy.verifyGateCollision(enemy,gate[i]);
-	}
-	enemy.verifyCityCollision(enemy,city);
-	enemy.update();
-	while(enemy.x<200 || enemy.x>600){
-		enemy.x = randomize(60)*10;
+	
+	//enemies update
+	for(i=0;i<10;i++){
+		while(enemy[i].x<(-50) || enemy[i].x>260){
+			enemy[i].x = randomize(60)*10;
+		}
+		enemy[i].update();
 	}
 	
+	//verifyiing enemies collision
+	for(var j=0;j<10;j++){
+		for(i=0;i<4;i++){
+			enemy[j].verifyGateCollision(enemy[j],gate[i]);
+		}
+		enemy[j].verifyCityCollision(enemy[i],city);
+	}	
 }
 
 function render(){
@@ -469,7 +482,11 @@ function render(){
 	
 	//render player
 	player.render();
-	enemy.render();
+	
+	//render enemy
+	for(i=0;i<10;i++){
+		enemy[i].render();
+	}
 	
 	//render gates
 	for(i=0;i<4;i++){

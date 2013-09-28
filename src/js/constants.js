@@ -16,8 +16,8 @@ var Y_SHIFT = 290;
 var PLAYER_RADIUS = 14;
 
 //Enemies constants
-var ENEMY_STARTING_X = 30;
-var ENEMY_STARTING_Y = 530;
+var ENEMY_STARTING_X = -300;
+var ENEMY_STARTING_Y = 610;
 var ENEMY_SPEED = 1;
 var ENEMY_RADIUS = 6;
 
