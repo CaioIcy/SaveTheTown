@@ -1,6 +1,6 @@
 //Enemy Class
 
-function Enemy( x, y, speed, radius, sprite) {
+function Enemy( x, y, speed, radius, sprite, minX, maxX ) {
 
 	this.speed = speed;
 	this.x = x;
@@ -8,6 +8,8 @@ function Enemy( x, y, speed, radius, sprite) {
 	this.sprite = sprite;
 	this.radius = radius;
 	this.move = true;
+	this.minX = minX;
+	this.maxX = maxX;
 	
 	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){

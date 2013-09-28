@@ -14,15 +14,15 @@ function update(){
 	player.update();
 	
 	//enemies update
-	for(i=0;i<10;i++){
-		while(enemy[i].x<(-50) || enemy[i].x>260){
-			enemy[i].x = randomize(60)*10;
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+		while(enemy[i].x<(enemy[i].minX) || enemy[i].x> (enemy[i].maxX) ){
+			enemy[i].x = randomize(82)*10;
 		}
 		enemy[i].update();
 	}
 	
 	//verifyiing enemies collision
-	for(var j=0;j<10;j++){
+	for(var j=0;j<NUMBER_OF_TROLLS_TO_SPAWN;j++){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 		}
@@ -38,7 +38,7 @@ function render(){
 	player.render();
 	
 	//render enemy
-	for(i=0;i<10;i++){
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
 		enemy[i].render();
 	}
 	

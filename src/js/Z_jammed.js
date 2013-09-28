@@ -3,20 +3,28 @@
 
 var background_grass = new Image();
 background_grass.src = "res/images/bg_grass.png";
+
 var spriteCity = new Image();
 spriteCity.src = "res/images/city.png";
+
 var blue_gate = new Image();
 blue_gate.src = "res/images/blue_gate.png";
+
 var gold_gate = new Image();
 gold_gate.src = "res/images/gold_gate.png";
+
 var purple_gate = new Image();
 purple_gate.src = "res/images/purple_gate.png";
+
 var red_gate = new Image();
 red_gate.src = "res/images/red_gate.png";
+
 var playerSprite = new Image();
 playerSprite.src = "res/images/player.png";
+
 var troll = new Image();
-troll.src = "res/images/troll.png";//This script shamefully contains global constants and variables
+troll.src = "res/images/troll.png";
+//This script shamefully contains global constants and variables
 
 var pressedKeys = [];
 var paused = false;
@@ -38,6 +46,9 @@ var ENEMY_STARTING_X = -300;
 var ENEMY_STARTING_Y = 610;
 var ENEMY_SPEED = 1;
 var ENEMY_RADIUS = 6;
+
+var NUMBER_OF_TROLLS_TO_SPAWN = 100;
+
 
 //City constants
 var CITY_STARTING_X = 30;
@@ -72,7 +83,6 @@ var RED_GATE = 4;
 var TOWN_CENTER_X = 401;
 var TOWN_CENTER_Y = 300;
 var GATE_RADIUS = 41;
- 
 //This script contains all the ASCII values from the keyboard
 
 //numbers (keyboard)
@@ -182,20 +192,19 @@ var VK_QUOTES = 222;
 
 function circleCollision(circle1, circle2){
 	
-
 	var dx = (circle2.x + circle2.radius) - (circle1.x + circle1.radius);
 	var dy = (circle2.y + circle2.radius) - (circle1.y + circle1.radius);
 	var distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
 		
 	if (Math.abs(distance) <= Math.abs(circle1.radius + circle2.radius)){
-
 		return true;
 	}
 	else{
 		return false;
 	}
 	
-}//Gate Class
+}
+//Gate Class
 
 function Gate( x, y, hp, radius, sprite){
 
@@ -211,7 +220,7 @@ function Gate( x, y, hp, radius, sprite){
 }
 //Enemy Class
 
-function Enemy( x, y, speed, radius, sprite) {
+function Enemy( x, y, speed, radius, sprite, minX, maxX ) {
 
 	this.speed = speed;
 	this.x = x;
@@ -219,6 +228,8 @@ function Enemy( x, y, speed, radius, sprite) {
 	this.sprite = sprite;
 	this.radius = radius;
 	this.move = true;
+	this.minX = minX;
+	this.maxX = maxX;
 	
 	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
@@ -377,8 +388,8 @@ function City(x , y , radius, sprite) {
 	this.y = y;
 	this.radius = sprite.width/2;
 	this.sprite = sprite;
-}       
-        //This script contains anything
+}
+//This script contains anything
 
 function xText(){
 	d.fillStyle="blue";
@@ -388,13 +399,26 @@ function xText(){
 
 function randomize(limite){
 	return Math.floor(Math.random()*limite)+1;
-}//This script will be the game initializer
+}
+//This script will be the game initializer
 
 var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
 
 var enemy = new Array();
-	for(i=0;i<10;i++){
-		enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll);
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+		var trollSpawn = randomize(4);
+			if(trollSpawn==1){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500);
+			}
+			else if(trollSpawn==2){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,(-50),260);
+			}
+			else if(trollSpawn==3){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,260,560);
+			}
+			else if(trollSpawn==4){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,560,800);
+			}
 	}
 
 var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
@@ -443,7 +467,6 @@ function Keyboard(){
 	};
 	
 }
-
 //This script is contains the update and render method of the game
 
 var canvas = document.getElementById("canvas");
@@ -460,15 +483,15 @@ function update(){
 	player.update();
 	
 	//enemies update
-	for(i=0;i<10;i++){
-		while(enemy[i].x<(-50) || enemy[i].x>260){
-			enemy[i].x = randomize(60)*10;
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+		while(enemy[i].x<(enemy[i].minX) || enemy[i].x> (enemy[i].maxX) ){
+			enemy[i].x = randomize(82)*10;
 		}
 		enemy[i].update();
 	}
 	
 	//verifyiing enemies collision
-	for(var j=0;j<10;j++){
+	for(var j=0;j<NUMBER_OF_TROLLS_TO_SPAWN;j++){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 		}
@@ -484,7 +507,7 @@ function render(){
 	player.render();
 	
 	//render enemy
-	for(i=0;i<10;i++){
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
 		enemy[i].render();
 	}
 	

@@ -6,5 +6,4 @@ function City(x , y , radius, sprite) {
 	this.y = y;
 	this.radius = sprite.width/2;
 	this.sprite = sprite;
-}       
-        
+}

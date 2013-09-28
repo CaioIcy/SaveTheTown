@@ -3,8 +3,20 @@
 var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
 
 var enemy = new Array();
-	for(i=0;i<10;i++){
-		enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll);
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+		var trollSpawn = randomize(4);
+			if(trollSpawn==1){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500);
+			}
+			else if(trollSpawn==2){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,(-50),260);
+			}
+			else if(trollSpawn==3){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,260,560);
+			}
+			else if(trollSpawn==4){
+				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,560,800);
+			}
 	}
 
 var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);

@@ -21,6 +21,9 @@ var ENEMY_STARTING_Y = 610;
 var ENEMY_SPEED = 1;
 var ENEMY_RADIUS = 6;
 
+var NUMBER_OF_TROLLS_TO_SPAWN = 100;
+
+
 //City constants
 var CITY_STARTING_X = 30;
 var CITY_STARTING_Y = 30;
@@ -54,4 +57,3 @@ var RED_GATE = 4;
 var TOWN_CENTER_X = 401;
 var TOWN_CENTER_Y = 300;
 var GATE_RADIUS = 41;
- 
