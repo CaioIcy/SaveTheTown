@@ -1,105 +1,110 @@
 //Enemy Class
 
-function Enemy( posX, posY, speed, radius, sprite) {
+function Enemy( x, y, speed, radius, sprite) {
 
 	this.speed = speed;
-	this.posX = posX;
-	this.posY = posY;
+	this.x = x;
+	this.y = y;
 	this.sprite = sprite;
 	this.radius = radius;
 	this.move = true;
 	
+	this.verifyCollision = function(obj1,obj2){
+			if(circleCollision(obj1,obj2)){
+				this.move = false;
+			}
+	}
 	//Update
 	this.update = function(){
-		for(i=0;i<gate.length;i++){
-			if(!circleCollision(this,gate[i])){
-				this.move = false
-			}
-		}
 		
-		if(this.move){
+		//if(this.move){
+		
 			if(this.findGate()==PURPLE_GATE){
-				if(this.posX<(PURPLE_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(PURPLE_GATE_X_CENTER)){
+					this.x+=ENEMY_SPEED;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=ENEMY_SPEED;
 				}
 				
-				if(this.posY<(PURPLE_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(PURPLE_GATE_Y_CENTER)){
+					this.y+=ENEMY_SPEED;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=ENEMY_SPEED;
 				}
 			}
 			else if(this.findGate()==GOLD_GATE){
-				if(this.posX<(GOLD_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(GOLD_GATE_X_CENTER)){
+					this.x+=this.speed;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=this.speed;
 				}
 				
-				if(this.posY<(GOLD_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(GOLD_GATE_Y_CENTER)){
+					this.y+=this.speed;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=this.speed;
 				}
 			}
 			else if(this.findGate()==BLUE_GATE){
-				if(this.posX<(BLUE_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(BLUE_GATE_X_CENTER)){
+					this.x+=this.speed;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=this.speed;
 				}
 				
-				if(this.posY<(BLUE_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(BLUE_GATE_Y_CENTER)){
+					this.y+=this.speed;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=this.speed;
 				}
 			}
 			else {
-				if(this.posX<(RED_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(RED_GATE_X_CENTER)){
+					this.x+=this.speed;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=this.speed;
 				}
 				
-				if(this.posY<(RED_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(RED_GATE_Y_CENTER)){
+					this.y+=this.speed;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=this.speed;
 				}
 			}
-		}
+		
 	};
 	
 	//Render
 	this.render = function(){
-		d.fillRect(this.posX, this.posY,30,30);
+		d.drawImage(this.sprite,this.x, this.y);
 	};
 	
 	this.findGate = function(){
 		
 		var nextGate = 2;
-		distance = Math.sqrt((Math.pow((this.posX - GOLD_GATE_X_CENTER),2) + Math.pow((this.posY - GOLD_GATE_Y_CENTER),2)));
-		if (Math.sqrt((Math.pow((this.posX - RED_GATE_X_CENTER),2) + Math.pow((this.posY - RED_GATE_Y_CENTER),2)))<distance){
-			distance = Math.sqrt((Math.pow((this.posX - RED_GATE_X_CENTER),2) + Math.pow((this.posY - RED_GATE_Y_CENTER),2)));
+		var distanceToGate = Math.sqrt((Math.pow((this.x - GOLD_GATE_X_CENTER),2) + Math.pow((this.y - GOLD_GATE_Y_CENTER),2)));
+		if (Math.sqrt((Math.pow((this.x - RED_GATE_X_CENTER),2) + Math.pow((this.y - RED_GATE_Y_CENTER),2)))<distanceToGate){
+			distanceToGate = Math.sqrt((Math.pow((this.x - RED_GATE_X_CENTER),2) + Math.pow((this.y - RED_GATE_Y_CENTER),2)));
 			nextGate = 4;
 		}
-		if (Math.sqrt((Math.pow((this.posX - PURPLE_GATE_X_CENTER),2) + Math.pow((this.posY - PURPLE_GATE_Y_CENTER),2)))<distance){
-			distance = Math.sqrt((Math.pow((this.posX - PURPLE_GATE_X_CENTER),2) + Math.pow((this.posY - PURPLE_GATE_Y_CENTER),2)));
+		if (Math.sqrt((Math.pow((this.x - PURPLE_GATE_X_CENTER),2) + Math.pow((this.y - PURPLE_GATE_Y_CENTER),2)))<distanceToGate){
+			distanceToGate = Math.sqrt((Math.pow((this.x - PURPLE_GATE_X_CENTER),2) + Math.pow((this.y - PURPLE_GATE_Y_CENTER),2)));
 			nextGate = 1;
 		}
-		if (Math.sqrt((Math.pow((this.posX - BLUE_GATE_X_CENTER),2) + Math.pow((this.posY - BLUE_GATE_Y_CENTER),2)))<distance){
-			distance = Math.sqrt((Math.pow((this.posX - BLUE_GATE_X_CENTER),2) + Math.pow((this.posY - BLUE_GATE_Y_CENTER),2)));
+		if (Math.sqrt((Math.pow((this.x - BLUE_GATE_X_CENTER),2) + Math.pow((this.y - BLUE_GATE_Y_CENTER),2)))<distanceToGate){
+			distanceToGate = Math.sqrt((Math.pow((this.x - BLUE_GATE_X_CENTER),2) + Math.pow((this.y - BLUE_GATE_Y_CENTER),2)));
 			nextGate = 3;
 		}
 		return nextGate;

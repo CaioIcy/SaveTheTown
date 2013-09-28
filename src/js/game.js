@@ -9,8 +9,9 @@ function update(){
 
 	keyboard.updateKeyInput();
 	player.update();
+	//for(i=0;i<4;i++)
+		enemy.verifyCollision(enemy,gate[PURPLE_GATE-1]);
 	enemy.update();
-		
 	while(enemy.posX<200 || enemy.posX>600){
 		enemy.posX = randomize(60)*10;
 	}

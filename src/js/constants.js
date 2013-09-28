@@ -16,9 +16,10 @@ var Y_SHIFT = 290;
 var PLAYER_RADIUS = 14;
 
 //Enemies constants
-var ENEMY_STARTING_X=30;
+var ENEMY_STARTING_X = 30;
 var ENEMY_STARTING_Y = 30;
 var ENEMY_SPEED = 1;
+var ENEMY_RADIUS = 6;
 
 //Gates constants
 var GOLD_GATE_X_POSITION = 176;
@@ -47,4 +48,5 @@ var RED_GATE = 4;
 
 var TOWN_CENTER_X = 401;
 var TOWN_CENTER_Y = 300;
+var GATE_RADIUS = 41;
  

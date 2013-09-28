@@ -14,7 +14,9 @@ purple_gate.src = "res/images/purple_gate.png";
 var red_gate = new Image();
 red_gate.src = "res/images/red_gate.png";
 var playerSprite = new Image();
-playerSprite.src = "res/images/player.png";//This script shamefully contains global constants and variables
+playerSprite.src = "res/images/player.png";
+var troll = new Image();
+troll.src = "res/images/troll.png";//This script shamefully contains global constants and variables
 
 var pressedKeys = [];
 var paused = false;
@@ -32,9 +34,10 @@ var Y_SHIFT = 290;
 var PLAYER_RADIUS = 14;
 
 //Enemies constants
-var ENEMY_STARTING_X=30;
+var ENEMY_STARTING_X = 30;
 var ENEMY_STARTING_Y = 30;
 var ENEMY_SPEED = 1;
+var ENEMY_RADIUS = 6;
 
 //Gates constants
 var GOLD_GATE_X_POSITION = 176;
@@ -63,6 +66,7 @@ var RED_GATE = 4;
 
 var TOWN_CENTER_X = 401;
 var TOWN_CENTER_Y = 300;
+var GATE_RADIUS = 41;
  
 //This script contains all the ASCII values from the keyboard
 
@@ -173,11 +177,14 @@ var VK_QUOTES = 222;
 
 function circleCollision(circle1, circle2){
 	
+
 	var dx = circle2.x - circle1.x;
 	var dy = circle2.y - circle1.y;
 	var distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
-	
+		
+		//alert("Dist: " + distance + ", Raios: " + circle1.radius + circle2.radius);
 	if (distance < (circle1.radius + circle2.radius)){
+
 		return true;
 	}
 	else{
@@ -200,106 +207,112 @@ function Gate( x, y, hp, radius, sprite){
 }
 //Enemy Class
 
-function Enemy( posX, posY, speed, radius, sprite) {
+function Enemy( x, y, speed, radius, sprite) {
 
 	this.speed = speed;
-	this.posX = posX;
-	this.posY = posY;
+	this.x = x;
+	this.y = y;
 	this.sprite = sprite;
 	this.radius = radius;
 	this.move = true;
 	
+	this.verifyCollision = function(obj1,obj2){
+			if(circleCollision(obj1,obj2)){
+			alert("t6este");
+				this.move = false;
+			}
+	}
 	//Update
 	this.update = function(){
-		for(i=0;i<gate.length;i++){
-			if(!circleCollision(this,gate[i])){
-				this.move = false
-			}
-		}
 		
-		if(this.move){
+		//if(this.move){
+		
 			if(this.findGate()==PURPLE_GATE){
-				if(this.posX<(PURPLE_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(PURPLE_GATE_X_CENTER)){
+					this.x+=ENEMY_SPEED;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=ENEMY_SPEED;
 				}
 				
-				if(this.posY<(PURPLE_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(PURPLE_GATE_Y_CENTER)){
+					this.y+=ENEMY_SPEED;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=ENEMY_SPEED;
 				}
 			}
 			else if(this.findGate()==GOLD_GATE){
-				if(this.posX<(GOLD_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(GOLD_GATE_X_CENTER)){
+					this.x+=this.speed;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=this.speed;
 				}
 				
-				if(this.posY<(GOLD_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(GOLD_GATE_Y_CENTER)){
+					this.y+=this.speed;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=this.speed;
 				}
 			}
 			else if(this.findGate()==BLUE_GATE){
-				if(this.posX<(BLUE_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(BLUE_GATE_X_CENTER)){
+					this.x+=this.speed;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=this.speed;
 				}
 				
-				if(this.posY<(BLUE_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(BLUE_GATE_Y_CENTER)){
+					this.y+=this.speed;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=this.speed;
 				}
 			}
 			else {
-				if(this.posX<(RED_GATE_X_CENTER)){
-					this.posX+=this.speed;
+			
+				if(this.x<(RED_GATE_X_CENTER)){
+					this.x+=this.speed;
 				}
 				else {
-					this.posX-=this.speed;
+					this.x-=this.speed;
 				}
 				
-				if(this.posY<(RED_GATE_Y_CENTER)){
-					this.posY+=this.speed;
+				if(this.y<(RED_GATE_Y_CENTER)){
+					this.y+=this.speed;
 				}
 				else {
-					this.posY-=this.speed;
+					this.y-=this.speed;
 				}
 			}
-		}
+		
 	};
 	
 	//Render
 	this.render = function(){
-		d.fillRect(this.posX, this.posY,30,30);
+		d.drawImage(this.sprite,this.x, this.y);
 	};
 	
 	this.findGate = function(){
 		
 		var nextGate = 2;
-		distance = Math.sqrt((Math.pow((this.posX - GOLD_GATE_X_CENTER),2) + Math.pow((this.posY - GOLD_GATE_Y_CENTER),2)));
-		if (Math.sqrt((Math.pow((this.posX - RED_GATE_X_CENTER),2) + Math.pow((this.posY - RED_GATE_Y_CENTER),2)))<distance){
-			distance = Math.sqrt((Math.pow((this.posX - RED_GATE_X_CENTER),2) + Math.pow((this.posY - RED_GATE_Y_CENTER),2)));
+		var distanceToGate = Math.sqrt((Math.pow((this.x - GOLD_GATE_X_CENTER),2) + Math.pow((this.y - GOLD_GATE_Y_CENTER),2)));
+		if (Math.sqrt((Math.pow((this.x - RED_GATE_X_CENTER),2) + Math.pow((this.y - RED_GATE_Y_CENTER),2)))<distanceToGate){
+			distanceToGate = Math.sqrt((Math.pow((this.x - RED_GATE_X_CENTER),2) + Math.pow((this.y - RED_GATE_Y_CENTER),2)));
 			nextGate = 4;
 		}
-		if (Math.sqrt((Math.pow((this.posX - PURPLE_GATE_X_CENTER),2) + Math.pow((this.posY - PURPLE_GATE_Y_CENTER),2)))<distance){
-			distance = Math.sqrt((Math.pow((this.posX - PURPLE_GATE_X_CENTER),2) + Math.pow((this.posY - PURPLE_GATE_Y_CENTER),2)));
+		if (Math.sqrt((Math.pow((this.x - PURPLE_GATE_X_CENTER),2) + Math.pow((this.y - PURPLE_GATE_Y_CENTER),2)))<distanceToGate){
+			distanceToGate = Math.sqrt((Math.pow((this.x - PURPLE_GATE_X_CENTER),2) + Math.pow((this.y - PURPLE_GATE_Y_CENTER),2)));
 			nextGate = 1;
 		}
-		if (Math.sqrt((Math.pow((this.posX - BLUE_GATE_X_CENTER),2) + Math.pow((this.posY - BLUE_GATE_Y_CENTER),2)))<distance){
-			distance = Math.sqrt((Math.pow((this.posX - BLUE_GATE_X_CENTER),2) + Math.pow((this.posY - BLUE_GATE_Y_CENTER),2)));
+		if (Math.sqrt((Math.pow((this.x - BLUE_GATE_X_CENTER),2) + Math.pow((this.y - BLUE_GATE_Y_CENTER),2)))<distanceToGate){
+			distanceToGate = Math.sqrt((Math.pow((this.x - BLUE_GATE_X_CENTER),2) + Math.pow((this.y - BLUE_GATE_Y_CENTER),2)));
 			nextGate = 3;
 		}
 		return nextGate;
@@ -362,13 +375,15 @@ function randomize(limite){
 }//This script will be the game initializer
 
 var player = new Player(AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
-var enemy = new Enemy(ENEMY_STARTING_X,ENEMY_STARTING_Y,15,ENEMY_SPEED);
+var enemy = new Enemy(ENEMY_STARTING_X,ENEMY_STARTING_Y,ENEMY_SPEED,ENEMY_RADIUS,troll);
 
 var gate = new Array();
-gate[0] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,41, gold_gate);
-gate[1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,41, blue_gate);
-gate[2] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,41, red_gate);
-gate[3] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,41, purple_gate);
+
+gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate);
+gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate);
+gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate);
+gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate);
+
 //Keyboard Class
 //This script contains all the keyboard actions
 function Keyboard(){
@@ -379,7 +394,6 @@ function Keyboard(){
 
 		//up
 		if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-		alert("OAISOIDHIUOAHSDOISA");
 			player.movingToGate = 1;
 		}
 		else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
@@ -421,8 +435,9 @@ function update(){
 
 	keyboard.updateKeyInput();
 	player.update();
+	//for(i=0;i<4;i++)
+		enemy.verifyCollision(enemy,gate[PURPLE_GATE-1]);
 	enemy.update();
-		
 	while(enemy.posX<200 || enemy.posX>600){
 		enemy.posX = randomize(60)*10;
 	}

@@ -8,7 +8,6 @@ function Keyboard(){
 
 		//up
 		if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-		alert("OAISOIDHIUOAHSDOISA");
 			player.movingToGate = 1;
 		}
 		else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
