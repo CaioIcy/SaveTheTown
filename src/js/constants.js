@@ -39,3 +39,7 @@ const PURPLE_GATE = 1;
 const GOLD_GATE = 2;
 const BLUE_GATE = 3;
 const RED_GATE = 4;
+
+const TOWN_CENTER_X = 401;
+const TOWN_CENTER_Y = 300;
+ 
