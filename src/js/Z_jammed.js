@@ -355,22 +355,22 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart += this.speed;
+			this.posMovementStart -= this.speed;
 		}
 		else if (this.movingToGate==GOLD_GATE && this.posX.toFixed(1) != 213.8 && this.posY.toFixed(1) != 432.2){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart += this.speed;
+			this.posMovementStart -= this.speed;
 		}
 		else if (this.movingToGate==BLUE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 520.0){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart += this.speed;
+			this.posMovementStart -= this.speed;
 		}
 		else if (this.movingToGate==RED_GATE && this.posX.toFixed(1) != 565.0 && this.posY.toFixed(1) != 439.2){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart += this.speed;
+			this.posMovementStart -= this.speed;
 		}
 	};
 	
@@ -564,42 +564,3 @@ window.onkeyup = function(e){
 	pressedKeys[e.keyCode] = false;
 
 };
-//Keyboard Class
-//This script contains all the keyboard actions
-function Keyboard(){
-
-
-	this.updateKeyInput = function(){
-		var isPressing = false;
-
-		//up
-		if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-			player.movingToGate = 1;
-		}
-		else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
-		}
-			
-		//left
-		if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
-			player.movingToGate = 2;
-		}
-		else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
-		}
-		
-		//down
-		if(pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
-			player.movingToGate = 3;
-		}
-		else if(!pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
-		}
-		
-		//right
-		if(pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-			player.movingToGate = 4;
-		}
-		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-		}
-		
-	};
-	
-}
