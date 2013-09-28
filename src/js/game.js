@@ -18,8 +18,10 @@ function update(){
 		while(enemy[i].x<(enemy[i].minX) || enemy[i].x> (enemy[i].maxX) ){
 			enemy[i].x = randomize(82)*10;
 		}
-		enemy[i].update();
 	}
+	
+	for(i=0;i<amount;i++)
+		enemy[i].update();
 	
 	//verifyiing enemies collision
 	for(var j=0;j<NUMBER_OF_TROLLS_TO_SPAWN;j++){

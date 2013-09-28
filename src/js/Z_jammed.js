@@ -349,7 +349,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.sprite = sprite;
 	this.movingToGate = 0;
 	this.radius = radius;
-	
+	this.signal = "-";
 	//Update
 	this.update = function(){
 		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
@@ -418,10 +418,14 @@ function drawBar(posx, posy, size, width, state, horizontal, colorInside){
 
 var timeCounter=0;
 var count = 0;
+var amount = 1;
 function time(){
 	count++
 	if(count%350==0){
 		timeCounter++
+	}
+	if(count%1000==0){
+		amount = amount + randomize(3);
 	}
 }
 //This script will be the game initializer
@@ -430,19 +434,21 @@ var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_
 
 var enemy = new Array();
 	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+	
 		var trollSpawn = randomize(4);
-			if(trollSpawn==1){
-				enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500);
-			}
-			else if(trollSpawn==2){
-				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,(-50),260);
-			}
-			else if(trollSpawn==3){
-				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,260,560);
-			}
-			else if(trollSpawn==4){
-				enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,560,800);
-			}
+			
+		if(trollSpawn==1){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500);
+		}
+		else if(trollSpawn==2){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,(-50),260);
+		}
+		else if(trollSpawn==3){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,260,560);
+		}
+		else if(trollSpawn==4){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,560,800);
+		}
 	}
 
 var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
@@ -511,8 +517,10 @@ function update(){
 		while(enemy[i].x<(enemy[i].minX) || enemy[i].x> (enemy[i].maxX) ){
 			enemy[i].x = randomize(82)*10;
 		}
-		enemy[i].update();
 	}
+	
+	for(i=0;i<amount;i++)
+		enemy[i].update();
 	
 	//verifyiing enemies collision
 	for(var j=0;j<NUMBER_OF_TROLLS_TO_SPAWN;j++){

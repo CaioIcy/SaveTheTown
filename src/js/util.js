@@ -27,9 +27,13 @@ function drawBar(posx, posy, size, width, state, horizontal, colorInside){
 
 var timeCounter=0;
 var count = 0;
+var amount = 1;
 function time(){
 	count++
 	if(count%350==0){
 		timeCounter++
+	}
+	if(count%1000==0){
+		amount = amount + randomize(3);
 	}
 }
