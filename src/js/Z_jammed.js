@@ -227,7 +227,6 @@ function Enemy( x, y, speed, radius, sprite) {
 	}
 	this.verifyCityCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
-				alert("oi");
 			}
 	}
 	//Update
@@ -372,12 +371,12 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 }
 //City Class
 
-function City(x , y , radius) {
+function City(x , y , radius, sprite) {
 
 	this.x = x;
 	this.y = y;
-	this.radius = radius;
-	    
+	this.radius = sprite.width/2;
+	this.sprite = sprite;
 }       
         //This script contains anything
 
@@ -391,9 +390,9 @@ function randomize(limite){
 	return Math.floor(Math.random()*limite)+1;
 }//This script will be the game initializer
 
-var player = new Player(AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
-var enemy = new Enemy(ENEMY_STARTING_X,ENEMY_STARTING_Y,ENEMY_SPEED,ENEMY_RADIUS,troll);
-var city = new City(CITY_STARTING_X,CITY_STARTING_Y,CITY_RADIUS);
+var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
+var enemy = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll);
+var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
 
 var gate = new Array();
 
@@ -466,7 +465,7 @@ function update(){
 
 function render(){
 	d.drawImage(background_grass, 0, 0);
-	d.drawImage(spriteCity, 149, 48);
+	d.drawImage(city.sprite, 149, 48);
 	
 	//render player
 	player.render();

@@ -1,10 +1,10 @@
 //City Class
 
-function City(x , y , radius) {
+function City(x , y , radius, sprite) {
 
 	this.x = x;
 	this.y = y;
-	this.radius = radius;
-	    
+	this.radius = sprite.width/2;
+	this.sprite = sprite;
 }       
         

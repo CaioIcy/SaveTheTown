@@ -22,7 +22,7 @@ function update(){
 
 function render(){
 	d.drawImage(background_grass, 0, 0);
-	d.drawImage(spriteCity, 149, 48);
+	d.drawImage(city.sprite, 149, 48);
 	
 	//render player
 	player.render();

@@ -16,7 +16,6 @@ function Enemy( x, y, speed, radius, sprite) {
 	}
 	this.verifyCityCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
-				alert("oi");
 			}
 	}
 	//Update
