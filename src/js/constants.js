@@ -1,5 +1,9 @@
 //This script shamefully contains global constants and variables
 
+var pressedKeys = [];
+var paused = false;
+var i = 0;
+
 //player constants
 const PLAYER_STARTING_X = 390;
 const PLAYER_STARTING_Y = 60;
@@ -9,6 +13,7 @@ const CIRCLE_SPEED = 0.003;
 const MOVEMENT_START_POSITION = (3*Math.PI)/2;
 const X_SHIFT = 390;
 const Y_SHIFT = 290;
+const PLAYER_RADIUS = 14;
 
 //enemies constants
 const ENEMY_STARTING_X=30;

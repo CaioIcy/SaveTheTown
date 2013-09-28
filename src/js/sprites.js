@@ -1,5 +1,4 @@
 //This script loads all the sprites in the game
-"use strict";
 
 var background_grass = new Image();
 background_grass.src = "res/images/bg_grass.png";

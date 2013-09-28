@@ -7,14 +7,17 @@ function Enemy( posX, posY, speed, radius, sprite) {
 	this.posY = posY;
 	this.sprite = sprite;
 	this.radius = radius;
+	this.move = true;
 	
-	move = true;
 	//Update
 	this.update = function(){
-		for(i=0;i<gate.length;i++)
-			if(!circleCollision(this,gate[i]))
-				move = false
-		if(move){
+		for(i=0;i<gate.length;i++){
+			if(!circleCollision(this,gate[i])){
+				this.move = false
+			}
+		}
+		
+		if(this.move){
 			if(this.findGate()==PURPLE_GATE){
 				if(this.posX<(PURPLE_GATE_X_CENTER)){
 					this.posX+=this.speed;
@@ -22,6 +25,7 @@ function Enemy( posX, posY, speed, radius, sprite) {
 				else {
 					this.posX-=this.speed;
 				}
+				
 				if(this.posY<(PURPLE_GATE_Y_CENTER)){
 					this.posY+=this.speed;
 				}
@@ -36,6 +40,7 @@ function Enemy( posX, posY, speed, radius, sprite) {
 				else {
 					this.posX-=this.speed;
 				}
+				
 				if(this.posY<(GOLD_GATE_Y_CENTER)){
 					this.posY+=this.speed;
 				}
@@ -50,6 +55,7 @@ function Enemy( posX, posY, speed, radius, sprite) {
 				else {
 					this.posX-=this.speed;
 				}
+				
 				if(this.posY<(BLUE_GATE_Y_CENTER)){
 					this.posY+=this.speed;
 				}
@@ -64,6 +70,7 @@ function Enemy( posX, posY, speed, radius, sprite) {
 				else {
 					this.posX-=this.speed;
 				}
+				
 				if(this.posY<(RED_GATE_Y_CENTER)){
 					this.posY+=this.speed;
 				}
