@@ -10,6 +10,9 @@ function update(){
 		updateKeyInput();
 		player.update();
 		enemy.update();
+		
+		while(enemy.posX<200 || enemy.posX>600)
+			enemy.posX = randomize(60)*10;
 	}
 	else{
 		//do nothing

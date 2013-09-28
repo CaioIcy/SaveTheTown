@@ -9,6 +9,7 @@ function Enemy( posX, posY, speed, sprite) {
 	
 	//Update
 	this.update = function(){
+	
 		if(this.findGate()==PURPLE_GATE){
 			if(this.posX<(PURPLE_GATE_X_CENTER)){
 				this.posX+=this.speed;

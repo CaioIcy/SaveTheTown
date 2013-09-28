@@ -11,7 +11,7 @@ const X_SHIFT = 390;
 const Y_SHIFT = 290;
 
 //enemies constants
-const ENEMY_STARTING_X = 30;
+const ENEMY_STARTING_X=30;
 const ENEMY_STARTING_Y = 30;
 const ENEMY_SPEED = 1;
 
