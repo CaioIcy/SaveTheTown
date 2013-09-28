@@ -20,6 +20,7 @@
 #define file10 "Keyboard.js"
 #define file11 "game.js"
 
+
 #define IF_FILE0 if(i==0) {tempNode->filename = file0;}
 #define IF_FILE1 if(i==1) {tempNode->filename = file1;}
 #define IF_FILE2 if(i==2) {tempNode->filename = file2;}
@@ -27,13 +28,14 @@
 #define IF_FILE4 if(i==4) {tempNode->filename = file4;}
 #define IF_FILE5 if(i==5) {tempNode->filename = file5;}
 #define IF_FILE6 if(i==6) {tempNode->filename = file6;}
-#define IF_FILE7 if(i==7) {tempNode->filename = file7;}
+#define IF_FILE7 if(i==7) {tempNode->filename = file7;} 
 #define IF_FILE8 if(i==8) {tempNode->filename = file8;}
 #define IF_FILE9 if(i==9) {tempNode->filename = file9;}
 #define IF_FILE10 if(i==10) {tempNode->filename = file10;}
 #define IF_FILE11 if(i==11) {tempNode->filename = file11;}
 
 #define GAMBIARRA fin = fopen(file11, "rb");assert(fin!=NULL);write(fin, fout, file11);
+
 
 typedef struct _NODE{
 	char *filename;
@@ -123,10 +125,13 @@ int main(){
 	
 	//GAMBIARRA LEVEL 100
 	GAMBIARRA
+	fin = fopen(file10, "rb");
+	assert(fin!=NULL);
+	write(fin, fout, file10);
 	
 	
 	fclose(fin);
 	fclose(fout);
-
+	
 	return 0;
 }

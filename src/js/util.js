@@ -30,7 +30,6 @@ var count = 0;
 function time(){
 	count++
 	if(count%1000==0){
-		timeCounter++;
-		alert(timeCounter);
+		timeCounter++
 	}
 }

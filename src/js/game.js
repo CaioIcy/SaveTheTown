@@ -31,6 +31,7 @@ function update(){
 }
 
 function render(){
+
 	d.drawImage(background_grass, 0, 0);
 	d.drawImage(city.sprite, 149, 48);
 	
@@ -47,9 +48,13 @@ function render(){
 		gate[i].render();
 	}
 	
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, timeCounter>7 ?  0 : 15 - timeCounter*2, true, "pink");
+	}
+	
 	xText();	
 	time();
-	alert(timeCount);
+
 }
 
 window.setInterval("update()",60/1000);

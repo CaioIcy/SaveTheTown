@@ -421,8 +421,7 @@ var count = 0;
 function time(){
 	count++
 	if(count%1000==0){
-		timeCounter++;
-		alert(timeCounter);
+		timeCounter++
 	}
 }
 //This script will be the game initializer
@@ -525,6 +524,7 @@ function update(){
 }
 
 function render(){
+
 	d.drawImage(background_grass, 0, 0);
 	d.drawImage(city.sprite, 149, 48);
 	
@@ -541,9 +541,13 @@ function render(){
 		gate[i].render();
 	}
 	
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, timeCounter>7 ?  0 : 15 - timeCounter*2, true, "pink");
+	}
+	
 	xText();	
 	time();
-	alert(timeCount);
+
 }
 
 window.setInterval("update()",60/1000);
@@ -560,3 +564,42 @@ window.onkeyup = function(e){
 	pressedKeys[e.keyCode] = false;
 
 };
+//Keyboard Class
+//This script contains all the keyboard actions
+function Keyboard(){
+
+
+	this.updateKeyInput = function(){
+		var isPressing = false;
+
+		//up
+		if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
+			player.movingToGate = 1;
+		}
+		else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
+		}
+			
+		//left
+		if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
+			player.movingToGate = 2;
+		}
+		else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
+		}
+		
+		//down
+		if(pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
+			player.movingToGate = 3;
+		}
+		else if(!pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
+		}
+		
+		//right
+		if(pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
+			player.movingToGate = 4;
+		}
+		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
+		}
+		
+	};
+	
+}
