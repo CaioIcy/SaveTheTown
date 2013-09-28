@@ -9,11 +9,12 @@ function update(){
 
 	keyboard.updateKeyInput();
 	player.update();
-	for(i=0;i<4;i++)
+	for(i=0;i<4;i++){
 		enemy.verifyCollision(enemy,gate[i]);
+	}
 	enemy.update();
-	while(enemy.posX<200 || enemy.posX>600){
-		enemy.posX = randomize(60)*10;
+	while(enemy.x<200 || enemy.x>600){
+		enemy.x = randomize(60)*10;
 	}
 	
 }
