@@ -1,0 +1,1 @@
+const POSICAO_X_BASE_1 = 215;
