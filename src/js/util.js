@@ -29,7 +29,7 @@ var timeCounter=0;
 var count = 0;
 function time(){
 	count++
-	if(count%1000==0){
+	if(count%350==0){
 		timeCounter++
 	}
 }

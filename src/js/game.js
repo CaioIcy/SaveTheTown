@@ -49,7 +49,7 @@ function render(){
 	}
 	
 	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
-		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, timeCounter>7 ?  0 : 15 - timeCounter*2, true, "pink");
+		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, timeCounter>14 ?  0 : 15 - timeCounter, true, "pink");
 	}
 	
 	xText();	
