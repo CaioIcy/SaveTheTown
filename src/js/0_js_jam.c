@@ -33,6 +33,8 @@
 #define IF_FILE10 if(i==10) {tempNode->filename = file10;}
 #define IF_FILE11 if(i==11) {tempNode->filename = file11;}
 
+#define GAMBIARRA fin = fopen(file11, "rb");assert(fin!=NULL);write(fin, fout, file11);
+
 typedef struct _NODE{
 	char *filename;
 	struct _NODE *next;
@@ -120,9 +122,7 @@ int main(){
 	}
 	
 	//GAMBIARRA LEVEL 100
-	fin = fopen(file11, "rb");
-	assert(fin!=NULL);
-	write(fin, fout, file11);
+	GAMBIARRA
 	
 	
 	fclose(fin);

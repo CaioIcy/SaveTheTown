@@ -9,3 +9,18 @@ function xText(){
 function randomize(limite){
 	return Math.floor(Math.random()*limite)+1;
 }
+
+function drawBar(posx, posy, size, width, state, horizontal, colorInside){
+	d.fillStyle="black";
+	if(horizontal){
+		d.fillRect(posx, posy-1, size+2, width);
+		d.fillStyle = colorInside;
+		d.fillRect(posx+1, posy, state, width-2);
+	}
+	else if(!horizontal){
+		d.fillRect(posx, posy-1, width, size+2);
+		d.fillStyle = colorInside;
+		d.fillRect(posx+1, posy+(size-state), width-2, state);
+	}
+	d.fillStyle="black";
+}
