@@ -1,3 +1,5 @@
+//This script contains all the ASCII values from the keyboard
+
 //numbers (keyboard)
 const VK_0 = 48;
 const VK_1 = 49;

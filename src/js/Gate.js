@@ -1,3 +1,5 @@
+//Gate Class
+
 function Gate(x,y,hp){
 
 	this.x=x;

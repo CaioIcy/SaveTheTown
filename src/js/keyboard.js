@@ -1,3 +1,5 @@
+//This script contains all the keyboard actions
+
 window.onkeydown = function(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = true;
@@ -12,18 +14,17 @@ window.onkeyup = function(e){
 
 var pressedKeys = [];
 
-function keyInput(){
+function updateKeyInput(){
 
 	//left
 	if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
-		walk = true;
+		playerWalkingInCircle = true;
 	}
 	else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 	}
 	
 	//up
 	if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-		SET=1;
 	}
 	else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
 	}

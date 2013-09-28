@@ -1,13 +1,12 @@
+//This script is contains the update and render method of the game
+
 canvas=document.getElementById("canvas");
 d = canvas.getContext("2d");
 
-var walk = false;
-
 function update(){
-	keyInput();
+	updateKeyInput();
 	player.update();
 }
-
 
 function render(){
 
@@ -21,17 +20,15 @@ function render(){
 	}
 	
 	d.fillStyle="blue";
-	
-
 
 	d.fillRect(player.posX, player.posY, 20, 20);
-	d.fillText("X: "+ Math.cos(player.position) + ", Y: " + Math.sin(player.position), 20,20);
+	d.fillText("X: "+ Math.cos(player.posMovementStart) + ", Y: " + Math.sin(player.posMovementStart), 20,20);
 	d.fillText("X real: " + player.posX +", Y real: "+ player.posY, 20, 50); 
 	
-	if (walk){
-		player.posX = (Math.cos(player.position)*player.x + 390);
-		player.posY = (Math.sin(player.position)*player.y + 290);
-		player.position+=player.speed;
+	if (playerWalkingInCircle){
+		player.posX = (Math.cos(player.posMovementStart) * player.amplitudeX) + X_SHIFT;
+		player.posY = (Math.sin(player.posMovementStart) * player.amplitudeY) + Y_SHIFT;
+		player.posMovementStart += player.speed;
 	}
 	
 }

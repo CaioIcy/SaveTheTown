@@ -1,14 +1,16 @@
-function Player(x,y,speed,position,posX,posY) {
-	this.x=x;
-	this.y=y;
-	this.speed=speed;
-	this.position=position;
-	this.posX=posX;
-	this.posY=posY;
+//Player Class
+
+function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY) {
+	this.amplitudeX = amplitudeX;
+	this.amplitudeY = amplitudeY;
+	this.speed = speed;
+	this.posMovementStart = posMovementStart;
+	this.posX = posX;
+	this.posY = posY;
 	
 	//Update
 	this.update = function(){
-		//this.x+=this.speedX;
+		//?
 	};
 	
 }
