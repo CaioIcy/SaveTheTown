@@ -1,5 +1,3 @@
-Z_jammed.js
-
 # Compiled source #
 ###################
 *.com
@@ -8,6 +6,7 @@ Z_jammed.js
 *.exe
 *.o
 *.so
+Z_jammed.js
 
 # Packages #
 ############
