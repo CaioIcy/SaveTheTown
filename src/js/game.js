@@ -64,6 +64,7 @@ function render(){
 	
 	for(i=0;i<amount;i++){
 		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, enemy[i].timeCounter>14 ?  0 : 15 - enemy[i].timeCounter, true, "pink");
+			if(enemy[i].timeCounter==15)enemy[i].destroy();
 	}
 	xText();	
 	time();
