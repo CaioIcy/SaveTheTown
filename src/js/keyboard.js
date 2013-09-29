@@ -34,6 +34,13 @@ function Keyboard(){
 		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
 		}
 		
+		//WHAT
+		if(pressedKeys[VK_B]){
+			gate[3].setSprite(brokenSprite);
+		}
+		else if(!pressedKeys[VK_B]){
+		}
+		
 	};
 	
 }

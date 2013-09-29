@@ -35,3 +35,6 @@ playerSprite.src = "res/images/player.png";
 
 var troll = new Image();
 troll.src = "res/images/troll.png";
+
+var brokenGate = new Image();
+brokenGate.src = "res/images/broken_gate.png";

@@ -10,7 +10,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.sprite = sprite;
 	this.movingToGate = 0;
 	this.radius = radius;
-	this.signal = "-";
+	
 	//Update
 	this.update = function(){
 		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){

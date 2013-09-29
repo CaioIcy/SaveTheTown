@@ -40,8 +40,11 @@ function time(){
 	if(count%1000==0){
 		amount = amount + randomize(3);
 		
-		if(amount >= NUMBER_OF_TROLLS_TO_SPAWN)
+		if(amount >= NUMBER_OF_TROLLS_TO_SPAWN){
 			amount = NUMBER_OF_TROLLS_TO_SPAWN;
+		}
 	}
-	if(count>20000)count=0;
+	if(count>20000){
+		count=0;
+	}
 }
