@@ -118,6 +118,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 		}   
 		this.pacified = true;
 		d.font = "14pt Arial";
+		this.collidingWithGate = false;
 		
 		d.fillText("Pacified!",this.textx,this.texty);
 		

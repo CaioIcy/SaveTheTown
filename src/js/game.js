@@ -1,8 +1,5 @@
 //This script is contains the update and render method of the game
 
-var canvas = document.getElementById("canvas");
-var d = canvas.getContext("2d");
-
 var keyboard = new Keyboard();
 
 function update(){
@@ -29,6 +26,7 @@ function update(){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 			if(enemy[j].collidingWithGate){
+				alert(enemy[j].collidingWithGate);
 				if(gate[i].health >= 0){
 					gate[i].health-=0.01;
 				}
@@ -118,11 +116,8 @@ function render(){
 	
 	textGateHealth();	
 	time();
-
 }
 
-window.setInterval("update()",60/1000);
-window.setInterval("render()",1);
 
 window.onkeydown = function(e){
 	e=e||event;
@@ -135,3 +130,4 @@ window.onkeyup = function(e){
 	pressedKeys[e.keyCode] = false;
 
 };
+

@@ -7,19 +7,20 @@
 
 #define NUMBER_OF_JS 13
 
-#define file0 "Menu.js"
-#define file1 "sprites.js"
-#define file2 "constants.js"
-#define file3 "vk_values.js"
-#define file4 "collision.js"
-#define file5 "Gate.js"
-#define file6 "Enemy.js"
-#define file7 "Player.js"
-#define file8 "City.js"
-#define file9 "initialize.js"
-#define file10 "util.js"
-#define file11 "Keyboard.js"
-#define file12 "game.js" 
+
+#define file0 "sprites.js"
+#define file1 "constants.js"
+#define file2 "vk_values.js"
+#define file3 "collision.js"
+#define file4 "Gate.js"
+#define file5 "Enemy.js"
+#define file6 "Player.js"
+#define file7 "City.js"
+#define file8 "initialize.js"
+#define file9 "util.js"
+#define file10 "Keyboard.js"
+#define file11 "game.js"
+#define file12 "Menu.js"
 
 #define IF_FILE0 if(i==0) {tempNode->filename = file0;}
 #define IF_FILE1 if(i==1) {tempNode->filename = file1;} 

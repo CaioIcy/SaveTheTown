@@ -1,3 +1,7 @@
+
+var canvas = document.getElementById("canvas");
+var d = canvas.getContext("2d");
+
 //This script loads all the sprites in the game
 
 var background_grass = new Image();
@@ -38,3 +42,5 @@ broken_gate.src = "res/images/broken_gate.png";
 
 var troll = new Image();
 troll.src = "res/images/troll.png";
+
+var state=0;
