@@ -114,7 +114,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 		if(!this.pacified){
 			this.textx = this.x;
 			this.texty = this.y;
-			player.score++;
+			player.score+=10;
 		}   
 		this.pacified = true;
 		d.font = "14pt Arial";

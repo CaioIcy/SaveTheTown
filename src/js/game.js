@@ -34,7 +34,6 @@ function update(){
 				}
 				else {
 					player.health -= 0.01;
-					d.fillText("Rebuilding...",30,500);
 				}
 				if(gate[i].health <= 0 && gate[i].health >= -20){
 					//alert("destroy");
@@ -64,6 +63,17 @@ function render(){
 	d.drawImage(gate[1].icon, MINIATURE_GOLD_GATE_X_POSITION, MINIATURE_GOLD_GATE_Y_POSITION);
 	d.drawImage(gate[2].icon, MINIATURE_BLUE_GATE_X_POSITION, MINIATURE_BLUE_GATE_Y_POSITION);
 	d.drawImage(gate[3].icon, MINIATURE_RED_GATE_X_POSITION, MINIATURE_RED_GATE_Y_POSITION);
+	
+	d.font = "9pt Arial";
+	
+	if(gate[0].broken)		
+		d.fillText("Rebuilding...",MINIATURE_PURPLE_GATE_X_POSITION + 38 , MINIATURE_PURPLE_GATE_Y_POSITION + 35);
+	if(gate[1].broken)		
+		d.fillText("Rebuilding...",MINIATURE_GOLD_GATE_X_POSITION + 38 , MINIATURE_GOLD_GATE_Y_POSITION + 35);
+	if(gate[2].broken)		
+		d.fillText("Rebuilding...",MINIATURE_BLUE_GATE_X_POSITION + 38 , MINIATURE_BLUE_GATE_Y_POSITION + 35);
+	if(gate[3].broken)		
+		d.fillText("Rebuilding...",MINIATURE_RED_GATE_X_POSITION + 38 , MINIATURE_RED_GATE_Y_POSITION + 35);
 	
 	drawBar(MINIATURE_PURPLE_GATE_X_POSITION + 38, MINIATURE_PURPLE_GATE_Y_POSITION + 5, 80, 20, gate[PURPLE_GATE-1].health, true, "#762A9C");
 	drawBar(MINIATURE_GOLD_GATE_X_POSITION + 38, MINIATURE_GOLD_GATE_Y_POSITION + 5, 80, 20, gate[GOLD_GATE-1].health, true, "#878A00");

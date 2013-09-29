@@ -151,6 +151,9 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 		d.drawImage(sprite, player.x, player.y, sprite.width, sprite.height);
 		drawBar(20, 80, 100, 30, this.health/2, true, "white");
 		d.font = "11pt Arial";
+		d.fillStyle="white";
+		d.fillRect(42,85,60,18);
+		d.fillStyle="black";
 		d.fillText(Math.floor(this.health) + " / " + 200 ,44,100);
 		d.fillText("MORALE",44,125);
 	};
