@@ -76,7 +76,7 @@ int main(){
 	fout = fopen(JAMMED_FILE, "ab");
 	assert(fout!=NULL);
 	
-	fprintf(fout, "\"use strict\";\n");
+	//fprintf(fout, "\"use strict\";\n");
 	
 	for(i = 0; i<NUMBER_OF_JS; i++){
 		NODE *tempNode;
