@@ -111,6 +111,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	};
 	
 	this.bePacified = function(){
+		alert("entrou");
 		d.fillText(" X: " + player.x + "Y : " + player.y,this.x,this.y);
 
 	}
