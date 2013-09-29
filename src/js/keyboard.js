@@ -8,28 +8,28 @@ function Keyboard(){
 
 		//up
 		if(pressedKeys[VK_UP] || pressedKeys[VK_W]){
-			player.movingToGate = 1;
+			player.movingToGate = PURPLE_GATE;
 		}
 		else if(!pressedKeys[VK_UP] || pressedKeys[VK_W]){
 		}
 			
 		//left
 		if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
-			player.movingToGate = 2;
+			player.movingToGate = GOLD_GATE;
 		}
 		else if(!pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 		}
 		
 		//down
 		if(pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
-			player.movingToGate = 3;
+			player.movingToGate = BLUE_GATE;
 		}
 		else if(!pressedKeys[VK_DOWN] || pressedKeys[VK_S]){
 		}
 		
 		//right
 		if(pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-			player.movingToGate = 4;
+			player.movingToGate = RED_GATE;
 		}
 		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
 		}
