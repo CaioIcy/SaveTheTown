@@ -124,15 +124,19 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	
 	//Update
 	this.update = function(){
-		this.getDirection();
-		if(this.movingToGate != this.currentGate ){
-			this.isMoving = true;
-			alert(this.isMoving);
-		}
-		if(this.isMoving)
-			this.move();
-			
+	
 		this.identifyGate();
+	
+		this.getDirection();
+		
+		if(this.movingToGate != this.currentGate ){	
+			this.isMoving = true;
+		}
+			
+		if(this.isMoving == true){
+			this.move();
+		}
+
 	};
 	
 	//Render

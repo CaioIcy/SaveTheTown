@@ -8,8 +8,7 @@ function Keyboard(){
 
 		//up
 		
-		if((pressedKeys[VK_UP] || pressedKeys[VK_W]) && player.isMoving == false){
-		alert("up :D");
+		if((pressedKeys[VK_UP] || pressedKeys[VK_W]) && player.isMoving == true){
 					player.movingToGate = PURPLE_GATE;
 
 		}
@@ -18,7 +17,7 @@ function Keyboard(){
 			
 		//left
 			
-		if((pressedKeys[VK_LEFT] || pressedKeys[VK_A]) && player.isMoving == false){
+		if((pressedKeys[VK_LEFT] || pressedKeys[VK_A]) && player.isMoving == true){
 			player.movingToGate = GOLD_GATE;
 
 		}
@@ -27,7 +26,7 @@ function Keyboard(){
 		
 		//down
 
-		if((pressedKeys[VK_DOWN] || pressedKeys[VK_S]) && player.isMoving == false){
+		if((pressedKeys[VK_DOWN] || pressedKeys[VK_S]) && player.isMoving == true){
 			player.movingToGate = BLUE_GATE;
 
 		}
@@ -36,7 +35,7 @@ function Keyboard(){
 		
 		//right
 		
-		if((pressedKeys[VK_RIGHT] || pressedKeys[VK_D]) && player.isMoving == false){
+		if((pressedKeys[VK_RIGHT] || pressedKeys[VK_D]) && player.isMoving == true){
 			player.movingToGate = RED_GATE;
 		}
 		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
