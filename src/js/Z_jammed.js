@@ -418,46 +418,28 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.movingToGate = 0;
 	this.radius = radius;
 	
-	this.moveInCircle = function(){
-		this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-		this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-		this.posMovementStart -= this.speed;
-	}
-	
-	this.validateForMovement = function(xpos, ypos){
-		var result = false;
-		for(i=PURPLE_GATE;i<=4;i++){
-			if(this.movingToGate==i && this.posX.toFixed(1) != xpos && this.posY.toFixed(1) != ypos) result = true;
-		}
-		return result;
-	};
-	
-	this.validateForGate = function(xpos, ypos){
-		var result = false;
-		if((this.posX - xpos)<=FLOATFIX && (this.posY - ypos)<= FLOATFIX) result = true;
-		return result;
-	};
-	
-	this.followCircle = function(){
-		for(i = 0; i<8; i+=2){
-			if(this.validateForMovement(ABC[i]), ABC[i+1]){
-				this.moveInCircle();
-			}
-		}
-	};
-	
-	this.checkGate = function(){
-		for(i = 0; i<8; i+=2){
-			if(this.validateForGate(ABC[i]), ABC[i+1]){
-				//alert(i);
-			}
-		}
-	};
-	
 	//Move
 	this.move = function(){
-		this.followCircle();
-		this.checkGate();
+		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
+			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+			this.posMovementStart -= this.speed;
+		}
+		else if (this.movingToGate==GOLD_GATE && this.posX.toFixed(1) != 213.8 && this.posY.toFixed(1) != 432.2){
+			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+			this.posMovementStart -= this.speed;
+		}
+		else if (this.movingToGate==BLUE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 520.0){
+			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+			this.posMovementStart -= this.speed;
+		}
+		else if (this.movingToGate==RED_GATE && this.posX.toFixed(1) != 565.0 && this.posY.toFixed(1) != 439.2){
+			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+			this.posMovementStart -= this.speed;
+		}
 	}
 	
 	//Update
