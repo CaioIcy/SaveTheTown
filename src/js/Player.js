@@ -11,8 +11,8 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.movingToGate = 0;
 	this.radius = radius;
 	
-	//Update
-	this.update = function(){
+	//Move
+	this.move = function(){
 		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
@@ -33,6 +33,11 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			this.posMovementStart -= this.speed;
 		}
+	}
+	
+	//Update
+	this.update = function(){
+		this.move();
 	};
 	
 	//Render

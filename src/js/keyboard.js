@@ -34,13 +34,6 @@ function Keyboard(){
 		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
 		}
 		
-		//WHAT
-		if(pressedKeys[VK_B]){
-			d.drawImage(broken_gate, 30, 30);
-		}
-		else if(!pressedKeys[VK_B]){
-		}
-		
 	};
 	
 }
