@@ -47,7 +47,6 @@ function render(){
 	drawBar(MINIATURE_BLUE_GATE_X_POSITION + 38, MINIATURE_BLUE_GATE_Y_POSITION + 5, 80, 20, 80, true, "#0657FF");
 	drawBar(MINIATURE_RED_GATE_X_POSITION + 38, MINIATURE_RED_GATE_Y_POSITION + 5, 80, 20, 80, true, "#C70035");
 
-	
 	//render player
 	player.render();
 	

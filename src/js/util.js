@@ -1,9 +1,12 @@
 //This script contains anything
 
 function xText(){
-	d.fillStyle="blue";
-	d.fillText("X: "+ Math.cos(player.posMovementStart) + ", Y: " + Math.sin(player.posMovementStart), 20,20);
-	d.fillText("X real: " + player.posX +", Y real: "+ player.posY, 20, 50); 
+	d.fillStyle="white";
+	d.fillText("80/80", MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
+	d.fillText("80/80", MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
+	d.fillText("80/80", MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
+	d.fillText("80/80", MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+
 }
 
 function randomize(limite){
