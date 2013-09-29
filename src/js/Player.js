@@ -128,7 +128,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	//Update
 	this.update = function(){
 	
-		if(this.health<=0)this.health=0;
+		if(this.health<=1)this.health=0;
 	
 		this.identifyGate();
 	

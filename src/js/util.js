@@ -1,5 +1,9 @@
 //This script contains anything
 
+function gameOver(){
+
+}
+
 function textGateHealth(){
 	d.fillStyle="white";
 	d.font = " 9pt Arial";
