@@ -14,6 +14,8 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	this.currentGate = PURPLE_GATE;
 	this.signal="+"
 	this.isMoving = false;
+	this.score=0;
+	this.health=200;
 	
 	//Move
 	this.move = function(){
@@ -26,7 +28,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 				this.posMovementStart += this.speed;
 			
 		}
-		else if (this.movingToGate==GOLD_GATE && this.x.toFixed(1) != 213.8 && this.y.toFixed(1) != 432.2){
+		else if (this.movingToGate==GOLD_GATE && !(this.x.toFixed(1) == 213.8 && this.y.toFixed(1) == 432.2)){
 			this.x = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.y = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
@@ -126,6 +128,8 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	//Update
 	this.update = function(){
 	
+		if(this.health<=1)this.health=0;
+	
 		this.identifyGate();
 	
 		this.getDirection();
@@ -145,6 +149,13 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	//Render
 	this.render = function(){
 		d.drawImage(sprite, player.x, player.y, sprite.width, sprite.height);
+		drawBar(20, 80, 100, 30, this.health/2, true, "white");
+		d.font = "11pt Arial";
+		d.fillStyle="white";
+		d.fillRect(42,85,60,18);
+		d.fillStyle="black";
+		d.fillText(Math.floor(this.health) + " / " + 200 ,44,100);
+		d.fillText("MORALE",44,125);
 	};
 	
 }

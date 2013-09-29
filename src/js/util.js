@@ -1,5 +1,9 @@
 //This script contains anything
 
+function gameOver(){
+
+}
+
 function textGateHealth(){
 	d.fillStyle="white";
 	d.font = " 9pt Arial";
@@ -18,7 +22,7 @@ function textGateHealth(){
 	else d.fillText(gate[RED_GATE-1].cooldown.toFixed(1), MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
 	
 	d.font = " 25pt Arial";
-	d.fillText("SCORE : ",20,50);
+	d.fillText("SCORE : "+player.score,20,50);
 }
 
 function randomize(limit){
