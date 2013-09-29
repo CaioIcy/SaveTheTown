@@ -32,7 +32,10 @@ function update(){
 				if(gate[i].health >= 0){
 					gate[i].health-=0.01;
 				}
-				else player.health -= 0.01;
+				else {
+					player.health -= 0.01;
+					d.fillText("Rebuilding...",30,500);
+				}
 				if(gate[i].health <= 0 && gate[i].health >= -20){
 					//alert("destroy");
 					gate[i].destroyGate();

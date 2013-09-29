@@ -117,7 +117,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 			player.score++;
 		}   
 		this.pacified = true;
-		this.x = -500;
+		d.font = "14pt Arial";
 		
 		d.fillText("Pacified!",this.textx,this.texty);
 		

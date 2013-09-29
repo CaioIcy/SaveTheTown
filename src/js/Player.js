@@ -28,7 +28,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 				this.posMovementStart += this.speed;
 			
 		}
-		else if (this.movingToGate==GOLD_GATE && this.x.toFixed(1) != 213.8 && this.y.toFixed(1) != 432.2){
+		else if (this.movingToGate==GOLD_GATE && !(this.x.toFixed(1) == 213.8 && this.y.toFixed(1) == 432.2)){
 			this.x = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.y = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
