@@ -16,7 +16,6 @@ function Gate( x, y, hp, radius, sprite, icon){
 	};
 	
 	this.destroyGate = function(){
-		this.setSprite(broken_gate);
 		this.health = 0;
 		this.cooldown--;
 		if(this.cooldown<=0){
@@ -26,8 +25,14 @@ function Gate( x, y, hp, radius, sprite, icon){
 		}
 	};
 	
+	
 	this.render = function(){
-		d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		if(this.health>0){
+			d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		}
+		else {
+			d.drawImage(broken_gate, x, y, sprite.width, sprite.height);
+		}
 	};
 	
 	

@@ -91,7 +91,7 @@ var MINIATURE_PURPLE_GATE_Y_POSITION = 170;
 
 var GATE_MAXHEALTH = 80;
 
-var COOLDOWN = 400;
+var COOLDOWN = 4000;
 
 var GOLD_GATE_X_CENTER = 217;
 var GOLD_GATE_Y_CENTER = 452;
@@ -250,7 +250,6 @@ function Gate( x, y, hp, radius, sprite, icon){
 	};
 	
 	this.destroyGate = function(){
-		this.setSprite(broken_gate);
 		this.health = 0;
 		this.cooldown--;
 		if(this.cooldown<=0){
@@ -260,8 +259,14 @@ function Gate( x, y, hp, radius, sprite, icon){
 		}
 	};
 	
+	
 	this.render = function(){
-		d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		if(this.health>0){
+			d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		}
+		else {
+			d.drawImage(broken_gate, x, y, sprite.width, sprite.height);
+		}
 	};
 	
 	
@@ -405,8 +410,8 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.movingToGate = 0;
 	this.radius = radius;
 	
-	//Update
-	this.update = function(){
+	//Move
+	this.move = function(){
 		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
@@ -427,6 +432,11 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			this.posMovementStart -= this.speed;
 		}
+	}
+	
+	//Update
+	this.update = function(){
+		this.move();
 	};
 	
 	//Render
@@ -478,10 +488,14 @@ gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_MAXHE
 
 function xText(){
 	d.fillStyle="white";
+	d.font = " 9pt Arial";
 	d.fillText(Math.floor(gate[PURPLE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[GOLD_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[BLUE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[RED_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+
+	d.font = " 25pt Arial";
+	d.fillText("SCORE : ",20,50);
 }
 
 function randomize(limite){
@@ -558,13 +572,6 @@ function Keyboard(){
 			player.movingToGate = 4;
 		}
 		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-		}
-		
-		//WHAT
-		if(pressedKeys[VK_B]){
-			d.drawImage(broken_gate, 30, 30);
-		}
-		else if(!pressedKeys[VK_B]){
 		}
 		
 	};
