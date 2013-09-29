@@ -19,6 +19,18 @@ purple_gate.src = "res/images/purple_gate.png";
 var red_gate = new Image();
 red_gate.src = "res/images/red_gate.png";
 
+var icon_blue_gate = new Image();
+icon_blue_gate.src = "res/images/blue_tower_icon.png";
+
+var icon_gold_gate = new Image();
+icon_gold_gate.src = "res/images/gold_tower_icon.png";
+
+var icon_purple_gate = new Image();
+icon_purple_gate.src = "res/images/purple_tower_icon.png";
+
+var icon_red_gate = new Image();
+icon_red_gate.src = "res/images/red_tower_icon.png";
+
 var playerSprite = new Image();
 playerSprite.src = "res/images/player.png";
 
@@ -216,12 +228,13 @@ function circleCollision(circle1, circle2){
 }
 //Gate Class
 
-function Gate( x, y, hp, radius, sprite){
+function Gate( x, y, hp, radius, sprite, icon){
 
-	this.x= x;
-	this.y= y;
-	this.health= hp;
-	this.sprite=sprite;
+	this.x = x;
+	this.y = y;
+	this.health = hp;
+	this.sprite = sprite;
+	this.icon = icon;
 	this.radius = radius;
 	
 	this.render = function(){
@@ -426,10 +439,10 @@ var enemy = new Array();
 var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
 
 var gate = new Array();
-gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate);
-gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate);
-gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate);
-gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate);
+gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate, icon_purple_gate);
+gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate, icon_gold_gate);
+gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate, icon_blue_gate);
+gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate, icon_red_gate);
 //This script contains anything
 
 function xText(){
@@ -555,10 +568,10 @@ function render(){
 	d.drawImage(background_grass, 0, 0);
 	d.drawImage(city.sprite, 149, 48);
 	
-	d.drawImage(gate[0].sprite, MINIATURE_PURPLE_GATE_X_POSITION, MINIATURE_PURPLE_GATE_Y_POSITION, 30, 30);
-	d.drawImage(gate[1].sprite, MINIATURE_GOLD_GATE_X_POSITION, MINIATURE_GOLD_GATE_Y_POSITION, 30, 30);
-	d.drawImage(gate[2].sprite, MINIATURE_BLUE_GATE_X_POSITION, MINIATURE_BLUE_GATE_Y_POSITION, 30, 30);
-	d.drawImage(gate[3].sprite, MINIATURE_RED_GATE_X_POSITION, MINIATURE_RED_GATE_Y_POSITION, 30, 30);
+	d.drawImage(gate[0].icon, MINIATURE_PURPLE_GATE_X_POSITION, MINIATURE_PURPLE_GATE_Y_POSITION);
+	d.drawImage(gate[1].icon, MINIATURE_GOLD_GATE_X_POSITION, MINIATURE_GOLD_GATE_Y_POSITION);
+	d.drawImage(gate[2].icon, MINIATURE_BLUE_GATE_X_POSITION, MINIATURE_BLUE_GATE_Y_POSITION);
+	d.drawImage(gate[3].icon, MINIATURE_RED_GATE_X_POSITION, MINIATURE_RED_GATE_Y_POSITION);
 	
 	drawBar(MINIATURE_PURPLE_GATE_X_POSITION + 38, MINIATURE_PURPLE_GATE_Y_POSITION + 5, 80, 20, 80, true, "#762A9C");
 	drawBar(MINIATURE_GOLD_GATE_X_POSITION + 38, MINIATURE_GOLD_GATE_Y_POSITION + 5, 80, 20, 80, true, "#878A00");
@@ -582,7 +595,11 @@ function render(){
 	
 	for(i=0;i<amount;i++){
 		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, enemy[i].timeCounter>14 ?  0 : 15 - enemy[i].timeCounter, true, "pink");
-			if(enemy[i].timeCounter==15)enemy[i].destroy();
+			if(enemy[i].timeCounter==15){
+				var index = enemy.indexOf(i);
+				if(index > -1)
+				enemy.splice(index,1);
+			}
 	}
 	xText();	
 	time();

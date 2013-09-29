@@ -18,6 +18,18 @@ purple_gate.src = "res/images/purple_gate.png";
 var red_gate = new Image();
 red_gate.src = "res/images/red_gate.png";
 
+var icon_blue_gate = new Image();
+icon_blue_gate.src = "res/images/blue_tower_icon.png";
+
+var icon_gold_gate = new Image();
+icon_gold_gate.src = "res/images/gold_tower_icon.png";
+
+var icon_purple_gate = new Image();
+icon_purple_gate.src = "res/images/purple_tower_icon.png";
+
+var icon_red_gate = new Image();
+icon_red_gate.src = "res/images/red_tower_icon.png";
+
 var playerSprite = new Image();
 playerSprite.src = "res/images/player.png";
 
