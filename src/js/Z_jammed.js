@@ -478,10 +478,10 @@ gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_MAXHE
 
 function xText(){
 	d.fillStyle="white";
-	d.fillText(gate[PURPLE_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
-	d.fillText(gate[GOLD_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
-	d.fillText(gate[BLUE_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
-	d.fillText(gate[RED_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+	d.fillText(Math.floor(gate[PURPLE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
+	d.fillText(Math.floor(gate[GOLD_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
+	d.fillText(Math.floor(gate[BLUE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
+	d.fillText(Math.floor(gate[RED_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
 }
 
 function randomize(limite){
@@ -601,7 +601,7 @@ function update(){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 			if(enemy[j].collidingWithGate){
-				gate[i].health--;
+				gate[i].health-=0.01;
 				if(gate[i].health <= 0){
 					gate[i].destroyGate();
 				}

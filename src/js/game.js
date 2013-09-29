@@ -29,7 +29,7 @@ function update(){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 			if(enemy[j].collidingWithGate){
-				gate[i].health--;
+				gate[i].health-=0.01;
 				if(gate[i].health <= 0){
 					gate[i].destroyGate();
 				}
