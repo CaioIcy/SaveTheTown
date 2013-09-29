@@ -5,20 +5,21 @@
 
 #define JAMMED_FILE "Z_jammed.js"
 
-#define NUMBER_OF_JS 12
+#define NUMBER_OF_JS 13
 
-#define file0 "sprites.js"
-#define file1 "constants.js"
-#define file2 "vk_values.js"
-#define file3 "collision.js"
-#define file4 "Gate.js"
-#define file5 "Enemy.js"
-#define file6 "Player.js"
-#define file7 "City.js"
-#define file8 "initialize.js"
-#define file9 "util.js"
-#define file10 "Keyboard.js"
-#define file11 "game.js" 
+#define file0 "Menu.js"
+#define file1 "sprites.js"
+#define file2 "constants.js"
+#define file3 "vk_values.js"
+#define file4 "collision.js"
+#define file5 "Gate.js"
+#define file6 "Enemy.js"
+#define file7 "Player.js"
+#define file8 "City.js"
+#define file9 "initialize.js"
+#define file10 "util.js"
+#define file11 "Keyboard.js"
+#define file12 "game.js" 
 
 #define IF_FILE0 if(i==0) {tempNode->filename = file0;}
 #define IF_FILE1 if(i==1) {tempNode->filename = file1;}
@@ -32,8 +33,9 @@
 #define IF_FILE9 if(i==9) {tempNode->filename = file9;}
 #define IF_FILE10 if(i==10) {tempNode->filename = file10;}
 #define IF_FILE11 if(i==11) {tempNode->filename = file11;}
+#define IF_FILE12 if(i==12) {tempNode->filename = file12;}
 
-#define GAMBIARRA fin = fopen(file11, "rb");assert(fin!=NULL);write(fin, fout, file11);
+#define GAMBIARRA fin = fopen(file12, "rb");assert(fin!=NULL);write(fin, fout, file12);
 
 typedef struct _NODE{
 	char *filename;
