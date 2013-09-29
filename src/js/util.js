@@ -25,13 +25,15 @@ function drawBar(posx, posy, size, width, state, horizontal, colorInside){
 	d.fillStyle="black";
 }
 
-var timeCounter=0;
+
 var count = 0;
 var amount = 1;
 function time(){
 	count++
 	if(count%350==0){
-		timeCounter++
+		for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+			enemy[i].timeCounter = enemy[i].timeCounter + 1;
+		}
 	}
 	if(count%1000==0){
 		amount = amount + randomize(3);

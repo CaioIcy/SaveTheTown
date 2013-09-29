@@ -41,19 +41,20 @@ function render(){
 	player.render();
 	
 	//render enemy
-	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+	for(i=0;i<amount;i++){
 		enemy[i].render();
 	}
+	for(i=amount;i<NUMBER_OF_TROLLS_TO_SPAWN;i++)
+		enemy[i].timeCounter=0;
 	
 	//render gates
 	for(i=0;i<4;i++){
 		gate[i].render();
 	}
 	
-	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
-		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, timeCounter>14 ?  0 : 15 - timeCounter, true, "pink");
+	for(i=0;i<amount;i++){
+		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, enemy[i].timeCounter>14 ?  0 : 15 - enemy[i].timeCounter, true, "pink");
 	}
-	
 	xText();	
 	time();
 

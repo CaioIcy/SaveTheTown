@@ -220,7 +220,7 @@ function Gate( x, y, hp, radius, sprite){
 }
 //Enemy Class
 
-function Enemy( x, y, speed, radius, sprite, minX, maxX ) {
+function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 
 	this.speed = speed;
 	this.x = x;
@@ -230,6 +230,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX ) {
 	this.move = true;
 	this.minX = minX;
 	this.maxX = maxX;
+	this.timeCounter = timeCounter;
 	
 	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
@@ -389,6 +390,36 @@ function City(x , y , radius, sprite) {
 	this.radius = sprite.width/2;
 	this.sprite = sprite;
 }
+//This script will be the game initializer
+
+var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
+
+var enemy = new Array();
+	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+	
+		var trollSpawn = randomize(4);
+			
+		if(trollSpawn==1){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500,0);
+		}
+		else if(trollSpawn==2){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,(-50),260,0);
+		}
+		else if(trollSpawn==3){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,260,560,0);
+		}
+		else if(trollSpawn==4){
+			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,560,800,0);
+		}
+	}
+
+var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
+
+var gate = new Array();
+gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate);
+gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate);
+gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate);
+gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate);
 //This script contains anything
 
 function xText(){
@@ -416,48 +447,20 @@ function drawBar(posx, posy, size, width, state, horizontal, colorInside){
 	d.fillStyle="black";
 }
 
-var timeCounter=0;
+
 var count = 0;
 var amount = 1;
 function time(){
 	count++
 	if(count%350==0){
-		timeCounter++
+		for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+			enemy[i].timeCounter = enemy[i].timeCounter + 1;
+		}
 	}
 	if(count%1000==0){
 		amount = amount + randomize(3);
 	}
 }
-//This script will be the game initializer
-
-var player = new Player( AMPLITUDE_X, AMPLITUDE_Y, CIRCLE_SPEED, MOVEMENT_START_POSITION, PLAYER_STARTING_X, PLAYER_STARTING_Y, PLAYER_RADIUS, playerSprite);
-
-var enemy = new Array();
-	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
-	
-		var trollSpawn = randomize(4);
-			
-		if(trollSpawn==1){
-			enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500);
-		}
-		else if(trollSpawn==2){
-			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,(-50),260);
-		}
-		else if(trollSpawn==3){
-			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,260,560);
-		}
-		else if(trollSpawn==4){
-			enemy[i] = new Enemy( ENEMY_STARTING_X, ENEMY_STARTING_Y, ENEMY_SPEED, ENEMY_RADIUS, troll,560,800);
-		}
-	}
-
-var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
-
-var gate = new Array();
-gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate);
-gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate);
-gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate);
-gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate);
 //Keyboard Class
 //This script contains all the keyboard actions
 function Keyboard(){
@@ -540,19 +543,20 @@ function render(){
 	player.render();
 	
 	//render enemy
-	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+	for(i=0;i<amount;i++){
 		enemy[i].render();
 	}
+	for(i=amount;i<NUMBER_OF_TROLLS_TO_SPAWN;i++)
+		enemy[i].timeCounter=0;
 	
 	//render gates
 	for(i=0;i<4;i++){
 		gate[i].render();
 	}
 	
-	for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
-		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, timeCounter>14 ?  0 : 15 - timeCounter, true, "pink");
+	for(i=0;i<amount;i++){
+		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, enemy[i].timeCounter>14 ?  0 : 15 - enemy[i].timeCounter, true, "pink");
 	}
-	
 	xText();	
 	time();
 
