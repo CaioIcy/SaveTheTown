@@ -53,6 +53,7 @@ function time(){
 	count++
 	if(count%350==0){
 		for(i=0;i<NUMBER_OF_TROLLS_TO_SPAWN;i++){
+			//if(enemy[i].timeCounter != -777)
 			enemy[i].timeCounter = enemy[i].timeCounter + 1;
 		}
 	}

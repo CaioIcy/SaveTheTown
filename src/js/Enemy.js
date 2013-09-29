@@ -123,6 +123,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 		d.fillText("Pacified!",this.textx,this.texty);
 		
 		this.rend = false;
+		this.timeCounter = 14;
 	}
 	
 	this.findGate = function(){

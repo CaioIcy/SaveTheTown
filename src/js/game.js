@@ -26,7 +26,7 @@ function update(){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 			if(enemy[j].collidingWithGate){
-				alert(enemy[j].collidingWithGate);
+				//alert(enemy[j].collidingWithGate);
 				if(gate[i].health >= 0){
 					gate[i].health-=0.01;
 				}

@@ -34,7 +34,7 @@ var ENEMY_STARTING_Y = 610;
 var ENEMY_SPEED = 1;
 var ENEMY_RADIUS = 6;
 
-var NUMBER_OF_TROLLS_TO_SPAWN = 100;
+var NUMBER_OF_TROLLS_TO_SPAWN = 777;
 
 
 //City constants

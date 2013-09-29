@@ -7,6 +7,8 @@ var enemy = new Array();
 	
 		var trollSpawn = randomize(4);
 			
+		if(i==0) trollSpawn = randomize(3)+1;
+			
 		if(trollSpawn==PURPLE_GATE){
 			enemy[i] = new Enemy( ENEMY_STARTING_X, -20, ENEMY_SPEED, ENEMY_RADIUS, troll,300,500,0);
 		}
