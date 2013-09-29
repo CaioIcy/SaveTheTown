@@ -2,10 +2,14 @@
 
 function xText(){
 	d.fillStyle="white";
+	d.font = " 9pt Arial";
 	d.fillText(Math.floor(gate[PURPLE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[GOLD_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[BLUE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[RED_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+
+	d.font = " 25pt Arial";
+	d.fillText("SCORE : ",20,50);
 }
 
 function randomize(limite){
