@@ -216,6 +216,7 @@ function Gate( x, y, hp, radius, sprite){
 	
 	this.render = function(){
 		d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		d.drawImage(sprite, 600, 100, 30, 30);
 	};
 }
 //Enemy Class
