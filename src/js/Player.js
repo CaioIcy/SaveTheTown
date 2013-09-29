@@ -127,6 +127,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 		this.getDirection();
 		if(this.movingToGate != this.currentGate ){
 			this.isMoving = true;
+			alert(this.isMoving);
 		}
 		if(this.isMoving)
 			this.move();
