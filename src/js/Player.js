@@ -15,6 +15,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	this.signal="+"
 	this.isMoving = false;
 	this.score=0;
+	this.health=200;
 	
 	//Move
 	this.move = function(){
@@ -127,6 +128,8 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	//Update
 	this.update = function(){
 	
+		if(this.health<=0)this.health=0;
+	
 		this.identifyGate();
 	
 		this.getDirection();
@@ -146,6 +149,10 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	//Render
 	this.render = function(){
 		d.drawImage(sprite, player.x, player.y, sprite.width, sprite.height);
+		drawBar(20, 80, 100, 30, this.health/2, true, "white");
+		d.font = "11pt Arial";
+		d.fillText(Math.floor(this.health) + " / " + 200 ,44,100);
+		d.fillText("MORALE",44,125);
 	};
 	
 }
