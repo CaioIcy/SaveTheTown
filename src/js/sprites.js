@@ -43,4 +43,3 @@ broken_gate.src = "res/images/broken_gate.png";
 var troll = new Image();
 troll.src = "res/images/troll.png";
 
-var state=0;
