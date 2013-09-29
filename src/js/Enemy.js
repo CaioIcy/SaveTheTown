@@ -27,12 +27,6 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 			}
 	}
 	
-	this.verifyPlayerCollision = function(obj1,obj2){
-			if(collision(obj1,obj2)){
-				alert("to de boa");
-			}
-	}
-	
 	//Update
 	this.update = function(){
 		

@@ -22,7 +22,6 @@ function update(){
 	
 	for(i=0;i<amount;i++){
 		enemy[i].update();
-		if(collision(enemy[i],player))enemy[i].bePacified();
 	}
 	
 	//verifyiing enemies collision
@@ -94,6 +93,11 @@ function render(){
 			}
 		}
 	}
+	
+	for(i=0;i<amount;i++){
+		if(circleCollision2(enemy[i],player))enemy[i].bePacified();
+	}
+	
 	textGateHealth();	
 	time();
 

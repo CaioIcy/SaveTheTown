@@ -1,14 +1,12 @@
 //Player Class
 
-function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, radius, sprite) {
+function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, sprite) {
 	this.amplitudeX = amplitudeX;
 	this.amplitudeY = amplitudeY;
 	this.speed = speed;
 	this.posMovementStart = posMovementStart;
-	this.posX = posX;
-	this.posY = posY;
-	this.x = posX;
-	this.y = posY;
+	this.x = x;
+	this.y = y;
 	this.radius = radius;
 	this.sprite = sprite;
 	this.movingToGate = PURPLE_GATE;
@@ -19,34 +17,34 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	
 	//Move
 	this.move = function(){
-		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+		if (this.movingToGate==PURPLE_GATE && this.x.toFixed(1) != 390.0 && this.y.toFixed(1) != 60.0){
+			this.x = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.y = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
 				this.posMovementStart -= this.speed;
 			else if(this.signal=="+")
 				this.posMovementStart += this.speed;
 			
 		}
-		else if (this.movingToGate==GOLD_GATE && this.posX.toFixed(1) != 213.8 && this.posY.toFixed(1) != 432.2){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+		else if (this.movingToGate==GOLD_GATE && this.x.toFixed(1) != 213.8 && this.y.toFixed(1) != 432.2){
+			this.x = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.y = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
 				this.posMovementStart -= this.speed;
 			else if(this.signal=="+")
 				this.posMovementStart += this.speed;
 		}
-		else if (this.movingToGate==BLUE_GATE && !((this.posX.toFixed(1) >= 389.0 && this.posX.toFixed(1) < 391.0) && (this.posY.toFixed(1) >= 519.0 && this.posY.toFixed(1) < 392.0))){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+		else if (this.movingToGate==BLUE_GATE && !((this.x.toFixed(1) >= 389.0 && this.x.toFixed(1) < 391.0) && (this.y.toFixed(1) >= 519.0 && this.y.toFixed(1) < 392.0))){
+			this.x = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.y = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
 				this.posMovementStart -= this.speed;
 			else if(this.signal=="+")
 				this.posMovementStart += this.speed;
 		}
-		else if (this.movingToGate==RED_GATE && this.posX.toFixed(1) != 565.0 && this.posY.toFixed(1) != 439.2){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+		else if (this.movingToGate==RED_GATE && this.x.toFixed(1) != 565.0 && this.y.toFixed(1) != 439.2){
+			this.x = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+			this.y = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
 				this.posMovementStart -= this.speed;
 			else if(this.signal=="+")
@@ -56,23 +54,23 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	
 	this.identifyGate = function(){
 	
-		if(this.posX >= PURPLE_GATE_X_POSITION && this.posX <= PURPLE_GATE_X_POSITION + purple_gate.width){
-			if(this.posY >= PURPLE_GATE_Y_POSITION && this.posY <= PURPLE_GATE_Y_POSITION + purple_gate.height)
+		if(this.x >= PURPLE_GATE_X_POSITION && this.x <= PURPLE_GATE_X_POSITION + purple_gate.width){
+			if(this.y >= PURPLE_GATE_Y_POSITION && this.y <= PURPLE_GATE_Y_POSITION + purple_gate.height)
 				this.currentGate = PURPLE_GATE;
 		}
 				
-		else if(this.posX >= GOLD_GATE_X_POSITION && this.posX <= GOLD_GATE_X_POSITION + gold_gate.width){
-			if(this.posY >= GOLD_GATE_Y_POSITION && this.posY <= GOLD_GATE_Y_POSITION + gold_gate.height)
+		else if(this.x >= GOLD_GATE_X_POSITION && this.x <= GOLD_GATE_X_POSITION + gold_gate.width){
+			if(this.y >= GOLD_GATE_Y_POSITION && this.y <= GOLD_GATE_Y_POSITION + gold_gate.height)
 				this.currentGate = GOLD_GATE;
 		}
 				
-		else if(this.posX >= 357 && this.posX < 439){
-			if(this.posY >= 497 && this.posY < 579)
+		else if(this.x >= 357 && this.x < 439){
+			if(this.y >= 497 && this.y < 579)
 				this.currentGate = BLUE_GATE;
 		}
 				
-		else if(this.posX >= RED_GATE_X_POSITION && this.posX <= RED_GATE_X_POSITION + red_gate.width){
-			if(this.posY >= RED_GATE_Y_POSITION && this.posY <= RED_GATE_Y_POSITION + red_gate.height)
+		else if(this.x >= RED_GATE_X_POSITION && this.x <= RED_GATE_X_POSITION + red_gate.width){
+			if(this.y >= RED_GATE_Y_POSITION && this.y <= RED_GATE_Y_POSITION + red_gate.height)
 				this.currentGate = RED_GATE;	
 		}
 	}
@@ -146,7 +144,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	
 	//Render
 	this.render = function(){
-		d.drawImage(sprite, player.posX, player.posY, sprite.width, sprite.height);
+		d.drawImage(sprite, player.x, player.y, sprite.width, sprite.height);
 	};
 	
 }
