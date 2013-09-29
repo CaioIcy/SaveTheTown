@@ -45,6 +45,19 @@ var pressedKeys = [];
 var paused = false;
 var i = 0;
 
+var FLOATFIX = 0.001;
+
+var ABC = [];
+	ABC[0] = 390.0;
+	ABC[1] = 60.0;
+	ABC[2] = 213.8;
+	ABC[3] = 432.2;
+	ABC[4] = 390.0;
+	ABC[5] = 520.0;
+	ABC[6] = 565.0;
+	ABC[7] = 439.2;
+
+
 //player constants
 var PLAYER_STARTING_X = 390;
 var PLAYER_STARTING_Y = 60;
@@ -405,28 +418,51 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.movingToGate = 0;
 	this.radius = radius;
 	
+	this.moveInCircle = function(){
+		this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
+		this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
+		this.posMovementStart -= this.speed;
+	}
+	
+	this.validateForMovement = function(xpos, ypos){
+		var result = false;
+		for(i=PURPLE_GATE;i<=4;i++){
+			if(this.movingToGate==i && this.posX.toFixed(1) != xpos && this.posY.toFixed(1) != ypos) result = true;
+		}
+		return result;
+	};
+	
+	this.validateForGate = function(xpos, ypos){
+		var result = false;
+		if((this.posX - xpos)<=FLOATFIX && (this.posY - ypos)<= FLOATFIX) result = true;
+		return result;
+	};
+	
+	this.followCircle = function(){
+		for(i = 0; i<8; i+=2){
+			if(this.validateForMovement(ABC[i]), ABC[i+1]){
+				this.moveInCircle();
+			}
+		}
+	};
+	
+	this.checkGate = function(){
+		for(i = 0; i<8; i+=2){
+			if(this.validateForGate(ABC[i]), ABC[i+1]){
+				//alert(i);
+			}
+		}
+	};
+	
+	//Move
+	this.move = function(){
+		this.followCircle();
+		this.checkGate();
+	}
+	
 	//Update
 	this.update = function(){
-		if (this.movingToGate==PURPLE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 60.0){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart -= this.speed;
-		}
-		else if (this.movingToGate==GOLD_GATE && this.posX.toFixed(1) != 213.8 && this.posY.toFixed(1) != 432.2){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart -= this.speed;
-		}
-		else if (this.movingToGate==BLUE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 520.0){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart -= this.speed;
-		}
-		else if (this.movingToGate==RED_GATE && this.posX.toFixed(1) != 565.0 && this.posY.toFixed(1) != 439.2){
-			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
-			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
-			this.posMovementStart -= this.speed;
-		}
+		this.move();
 	};
 	
 	//Render
@@ -478,10 +514,14 @@ gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_MAXHE
 
 function xText(){
 	d.fillStyle="white";
+	d.font = " 9pt Arial";
 	d.fillText(Math.floor(gate[PURPLE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[GOLD_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[BLUE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
 	d.fillText(Math.floor(gate[RED_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+
+	d.font = " 25pt Arial";
+	d.fillText("SCORE : ",20,50);
 }
 
 function randomize(limite){
@@ -558,13 +598,6 @@ function Keyboard(){
 			player.movingToGate = 4;
 		}
 		else if(!pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
-		}
-		
-		//WHAT
-		if(pressedKeys[VK_B]){
-			d.drawImage(broken_gate, 30, 30);
-		}
-		else if(!pressedKeys[VK_B]){
 		}
 		
 	};

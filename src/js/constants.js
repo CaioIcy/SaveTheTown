@@ -4,6 +4,19 @@ var pressedKeys = [];
 var paused = false;
 var i = 0;
 
+var FLOATFIX = 0.001;
+
+var ABC = [];
+	ABC[0] = 390.0;
+	ABC[1] = 60.0;
+	ABC[2] = 213.8;
+	ABC[3] = 432.2;
+	ABC[4] = 390.0;
+	ABC[5] = 520.0;
+	ABC[6] = 565.0;
+	ABC[7] = 439.2;
+
+
 //player constants
 var PLAYER_STARTING_X = 390;
 var PLAYER_STARTING_Y = 60;
