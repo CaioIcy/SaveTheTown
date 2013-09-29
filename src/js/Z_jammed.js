@@ -86,7 +86,7 @@ var MINIATURE_RED_GATE_Y_POSITION = 130;
 var MINIATURE_PURPLE_GATE_X_POSITION = 670;
 var MINIATURE_PURPLE_GATE_Y_POSITION = 170;
 
-var GATE_HEALTH = 100;
+var GATE_MAXHEALTH = 80;
 
 var GOLD_GATE_X_CENTER = 217;
 var GOLD_GATE_Y_CENTER = 452;
@@ -254,10 +254,15 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	this.minX = minX;
 	this.maxX = maxX;
 	this.timeCounter = timeCounter;
+	this.collidingWithGate = false;
 	
 	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
 				this.move = false;
+				this.collidingWithGate = true;
+			}
+			else{
+				this.collidingWithGate = false;
 			}
 	}
 	this.verifyCityCollision = function(obj1,obj2){
@@ -439,18 +444,18 @@ var enemy = new Array();
 var city = new City( CITY_STARTING_X, CITY_STARTING_Y, CITY_RADIUS, spriteCity);
 
 var gate = new Array();
-gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, purple_gate, icon_purple_gate);
-gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, gold_gate, icon_gold_gate);
-gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, blue_gate, icon_blue_gate);
-gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_HEALTH,GATE_RADIUS, red_gate, icon_red_gate);
+gate[PURPLE_GATE-1] = new Gate(PURPLE_GATE_X_POSITION, PURPLE_GATE_Y_POSITION, GATE_MAXHEALTH,GATE_RADIUS, purple_gate, icon_purple_gate);
+gate[GOLD_GATE-1] = new Gate(GOLD_GATE_X_POSITION, GOLD_GATE_Y_POSITION, GATE_MAXHEALTH,GATE_RADIUS, gold_gate, icon_gold_gate);
+gate[BLUE_GATE-1] = new Gate(BLUE_GATE_X_POSITION, BLUE_GATE_Y_POSITION, GATE_MAXHEALTH,GATE_RADIUS, blue_gate, icon_blue_gate);
+gate[RED_GATE-1] = new Gate(RED_GATE_X_POSITION, RED_GATE_Y_POSITION, GATE_MAXHEALTH,GATE_RADIUS, red_gate, icon_red_gate);
 //This script contains anything
 
 function xText(){
 	d.fillStyle="white";
-	d.fillText("80/80", MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
-	d.fillText("80/80", MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
-	d.fillText("80/80", MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
-	d.fillText("80/80", MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+	d.fillText(gate[PURPLE_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
+	d.fillText(gate[GOLD_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
+	d.fillText(gate[BLUE_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
+	d.fillText(gate[RED_GATE-1].health+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
 }
 
 function randomize(limite){
@@ -551,16 +556,20 @@ function update(){
 		}
 	}
 	
-	for(i=0;i<amount;i++)
+	for(i=0;i<amount;i++){
 		enemy[i].update();
+	}
 	
 	//verifyiing enemies collision
 	for(var j=0;j<NUMBER_OF_TROLLS_TO_SPAWN;j++){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
+			if(enemy[j].collidingWithGate){
+				gate[i].health--;
+			}
 		}
 		enemy[j].verifyCityCollision(enemy[i],city);
-	}	
+	}
 }
 
 function render(){
@@ -573,10 +582,10 @@ function render(){
 	d.drawImage(gate[2].icon, MINIATURE_BLUE_GATE_X_POSITION, MINIATURE_BLUE_GATE_Y_POSITION);
 	d.drawImage(gate[3].icon, MINIATURE_RED_GATE_X_POSITION, MINIATURE_RED_GATE_Y_POSITION);
 	
-	drawBar(MINIATURE_PURPLE_GATE_X_POSITION + 38, MINIATURE_PURPLE_GATE_Y_POSITION + 5, 80, 20, 80, true, "#762A9C");
-	drawBar(MINIATURE_GOLD_GATE_X_POSITION + 38, MINIATURE_GOLD_GATE_Y_POSITION + 5, 80, 20, 80, true, "#878A00");
-	drawBar(MINIATURE_BLUE_GATE_X_POSITION + 38, MINIATURE_BLUE_GATE_Y_POSITION + 5, 80, 20, 80, true, "#0657FF");
-	drawBar(MINIATURE_RED_GATE_X_POSITION + 38, MINIATURE_RED_GATE_Y_POSITION + 5, 80, 20, 80, true, "#C70035");
+	drawBar(MINIATURE_PURPLE_GATE_X_POSITION + 38, MINIATURE_PURPLE_GATE_Y_POSITION + 5, GATE_MAXHEALTH, 20, gate[PURPLE_GATE-1].health, true, "#762A9C");
+	drawBar(MINIATURE_GOLD_GATE_X_POSITION + 38, MINIATURE_GOLD_GATE_Y_POSITION + 5, GATE_MAXHEALTH, 20, gate[GOLD_GATE-1].health, true, "#878A00");
+	drawBar(MINIATURE_BLUE_GATE_X_POSITION + 38, MINIATURE_BLUE_GATE_Y_POSITION + 5, GATE_MAXHEALTH, 20, gate[BLUE_GATE-1].health, true, "#0657FF");
+	drawBar(MINIATURE_RED_GATE_X_POSITION + 38, MINIATURE_RED_GATE_Y_POSITION + 5, GATE_MAXHEALTH, 20, gate[RED_GATE-1].health, true, "#C70035");
 
 	//render player
 	player.render();
@@ -597,8 +606,11 @@ function render(){
 		drawBar(enemy[i].x, enemy[i].y-4, 15, 3, enemy[i].timeCounter>14 ?  0 : 15 - enemy[i].timeCounter, true, "pink");
 			if(enemy[i].timeCounter==15){
 				var index = enemy.indexOf(i);
-				if(index > -1)
-				enemy.splice(index,1);
+				enemy[i].x = -500;
+				enemy[i].y = -500;
+				if(index > -1){
+					enemy.splice(index,1);
+				}
 			}
 	}
 	xText();	

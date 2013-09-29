@@ -11,10 +11,15 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	this.minX = minX;
 	this.maxX = maxX;
 	this.timeCounter = timeCounter;
+	this.collidingWithGate = false;
 	
 	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
 				this.move = false;
+				this.collidingWithGate = true;
+			}
+			else{
+				this.collidingWithGate = false;
 			}
 	}
 	this.verifyCityCollision = function(obj1,obj2){
