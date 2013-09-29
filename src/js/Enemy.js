@@ -28,7 +28,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	}
 	
 	this.verifyPlayerCollision = function(obj1,obj2){
-			if(circleCollision(obj1,obj2)){
+			if(collision(obj1,obj2)){
 				alert("to de boa");
 			}
 	}
@@ -111,8 +111,7 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	};
 	
 	this.bePacified = function(){
-		alert("entrou");
-		d.fillText(" X: " + player.x + "Y : " + player.y,this.x,this.y);
+		d.fillRect(this.x,this.y,30,30);
 
 	}
 	

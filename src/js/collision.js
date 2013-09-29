@@ -18,8 +18,8 @@ function circleCollision(circle1, circle2){
 
 function collision(obj1, obj2){
 
-	var dx = Math.abs(obj2.x - obj1.x);
-	var dy = Math.abs(obj2.y - obj1.y);
+	var dx = Math.abs(obj2.posX - obj1.x);
+	var dy = Math.abs(obj2.posY - obj1.y);
 	var len = (obj1.radius + obj2.radius);
 	
 	if(dx < len && dy < len)
