@@ -1,22 +1,40 @@
 //This script contains anything
 
-function xText(){
+function textGateHealth(){
 	d.fillStyle="white";
 	d.font = " 9pt Arial";
-	d.fillText(Math.floor(gate[PURPLE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
-	d.fillText(Math.floor(gate[GOLD_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
-	d.fillText(Math.floor(gate[BLUE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
-	d.fillText(Math.floor(gate[RED_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
-
+	
+	
+	if(!gate[PURPLE_GATE-1].broken)d.fillText(Math.floor(gate[PURPLE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
+	else d.fillText(gate[PURPLE_GATE-1].cooldown.toFixed(1), MINIATURE_PURPLE_GATE_X_POSITION + 58, MINIATURE_PURPLE_GATE_Y_POSITION + 15);
+	
+	if(!gate[GOLD_GATE-1].broken) d.fillText(Math.floor(gate[GOLD_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
+	else d.fillText(gate[GOLD_GATE-1].cooldown.toFixed(1), MINIATURE_GOLD_GATE_X_POSITION + 58, MINIATURE_GOLD_GATE_Y_POSITION + 15);
+	
+	if(!gate[BLUE_GATE-1].broken)d.fillText(Math.floor(gate[BLUE_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
+	else d.fillText(gate[BLUE_GATE-1].cooldown.toFixed(1), MINIATURE_BLUE_GATE_X_POSITION + 58, MINIATURE_BLUE_GATE_Y_POSITION + 15);
+	
+	if(!gate[RED_GATE-1].broken)d.fillText(Math.floor(gate[RED_GATE-1].health)+" / "+GATE_MAXHEALTH, MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+	else d.fillText(gate[RED_GATE-1].cooldown.toFixed(1), MINIATURE_RED_GATE_X_POSITION + 58, MINIATURE_RED_GATE_Y_POSITION + 15);
+	
 	d.font = " 25pt Arial";
 	d.fillText("SCORE : ",20,50);
 }
 
-function randomize(limite){
-	return Math.floor(Math.random()*limite)+1;
+function showCooldown(){
+	d.fillStyle="white";
+	d.font = " 9pt Arial";
+	
+	
+}
+
+function randomize(limit){
+	return Math.floor(Math.random()*limit)+1;
 }
 
 function drawBar(posx, posy, size, width, state, horizontal, colorInside){
+	if(state==-30) state = 0;
+
 	d.fillStyle="black";
 	if(horizontal){
 		d.fillRect(posx, posy-1, size+2, width);

@@ -10,24 +10,29 @@ function Gate( x, y, hp, radius, sprite, icon){
 	this.icon = icon;
 	this.radius = radius;
 	this.cooldown = COOLDOWN;
+	this.broken = false;
+	this.doCooldown = false;
 	
-	this.setSprite = function(sprt){
-		this.sprite = sprt;
+	this.fixGate = function(){
+		this.doCooldown = false;
+		this.cooldown = COOLDOWN;
+		this.health = GATE_MAXHEALTH;
+		this.broken = false;
 	};
 	
 	this.destroyGate = function(){
-		this.setSprite(broken_gate);
-		this.health = 0;
-		this.cooldown--;
-		if(this.cooldown<=0){
-			this.cooldown = COOLDOWN;
-			this.health = GATE_MAXHEALTH;
-			this.sprite = this.originalSprite;
-		}
+		this.broken = true;
+		this.health = -30;
+		this.doCooldown = true;
 	};
 	
 	this.render = function(){
-		d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		if(!this.broken){
+			d.drawImage(sprite, x, y, sprite.width, sprite.height);
+		}
+		else{
+			d.drawImage(broken_gate, x, y, broken_gate.width, broken_gate.height);
+		}
 	};
 	
 	

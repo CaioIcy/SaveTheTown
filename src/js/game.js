@@ -29,11 +29,23 @@ function update(){
 		for(i=0;i<4;i++){
 			enemy[j].verifyGateCollision(enemy[j],gate[i]);
 			if(enemy[j].collidingWithGate){
-				gate[i].health-=0.01;
-				if(gate[i].health <= 0){
+				if(gate[i].health >= 0){
+					gate[i].health-=0.01;
+				}
+				if(gate[i].health <= 0 && gate[i].health >= -20){
+					//alert("destroy");
 					gate[i].destroyGate();
 				}
 			}
+			if(gate[i].doCooldown){
+				//alert("gate " + i + " cooldown = " + gate[i].cooldown);
+				
+				gate[i].cooldown -= RATE_COOLDOWN;
+				if(gate[i].cooldown <= 0){
+					gate[i].fixGate();
+				}
+			}
+			
 		}
 		enemy[j].verifyCityCollision(enemy[i],city);
 	}
@@ -54,6 +66,8 @@ function render(){
 	drawBar(MINIATURE_BLUE_GATE_X_POSITION + 38, MINIATURE_BLUE_GATE_Y_POSITION + 5, 80, 20, gate[BLUE_GATE-1].health, true, "#0657FF");
 	drawBar(MINIATURE_RED_GATE_X_POSITION + 38, MINIATURE_RED_GATE_Y_POSITION + 5, 80, 20, gate[RED_GATE-1].health, true, "#C70035");
 
+	showCooldown();
+	
 	//render player
 	player.render();
 	
@@ -81,7 +95,7 @@ function render(){
 			}
 		}
 	}
-	xText();	
+	textGateHealth();	
 	time();
 
 }
