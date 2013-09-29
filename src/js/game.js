@@ -65,8 +65,6 @@ function render(){
 	drawBar(MINIATURE_GOLD_GATE_X_POSITION + 38, MINIATURE_GOLD_GATE_Y_POSITION + 5, 80, 20, gate[GOLD_GATE-1].health, true, "#878A00");
 	drawBar(MINIATURE_BLUE_GATE_X_POSITION + 38, MINIATURE_BLUE_GATE_Y_POSITION + 5, 80, 20, gate[BLUE_GATE-1].health, true, "#0657FF");
 	drawBar(MINIATURE_RED_GATE_X_POSITION + 38, MINIATURE_RED_GATE_Y_POSITION + 5, 80, 20, gate[RED_GATE-1].health, true, "#C70035");
-
-	showCooldown();
 	
 	//render player
 	player.render();

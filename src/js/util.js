@@ -21,13 +21,6 @@ function textGateHealth(){
 	d.fillText("SCORE : ",20,50);
 }
 
-function showCooldown(){
-	d.fillStyle="white";
-	d.font = " 9pt Arial";
-	
-	
-}
-
 function randomize(limit){
 	return Math.floor(Math.random()*limit)+1;
 }
