@@ -24,15 +24,9 @@ function circleCollision2(circle1, circle2){
 	var dy = Math.abs((circle2.y + circle2.sprite.width/2) - (circle1.y + circle1.radius));
 	var distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
 		
-	d.fillText(distance,circle1.x,300);	
-		
 	if (Math.abs(distance) <= Math.abs(circle1.radius + circle2.radius)){
 		result = true;
 	}
-	
-	d.beginPath();
-	d.arc(circle2.x,circle2.y,circle2.radius,0,Math.PI*2);
-	d.stroke();
 	
 	return result;
 	

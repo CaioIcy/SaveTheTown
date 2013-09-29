@@ -14,6 +14,7 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 	this.currentGate = PURPLE_GATE;
 	this.signal="+"
 	this.isMoving = false;
+	this.score=0;
 	
 	//Move
 	this.move = function(){

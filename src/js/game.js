@@ -95,7 +95,9 @@ function render(){
 	}
 	
 	for(i=0;i<amount;i++){
-		if(circleCollision2(enemy[i],player))enemy[i].bePacified();
+		if(circleCollision2(enemy[i],player)){
+			enemy[i].bePacified(player);
+		}
 	}
 	
 	textGateHealth();	

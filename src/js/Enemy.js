@@ -12,6 +12,10 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	this.maxX = maxX;
 	this.timeCounter = timeCounter;
 	this.collidingWithGate = false;
+	this.rend = true;
+	this.textx = 0; 
+	this.texty = 0;
+	this.pacified = false;
 	
 	this.verifyGateCollision = function(obj1,obj2){
 			if(circleCollision(obj1,obj2)){
@@ -101,12 +105,21 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	
 	//Render
 	this.render = function(){
-		d.drawImage(this.sprite,this.x, this.y);
+		if(this.rend){
+			d.drawImage(this.sprite,this.x, this.y);
+		}
 	};
 	
-	this.bePacified = function(){
-		d.fillRect(this.x,this.y,30,30);
-
+	this.bePacified = function(player){
+		if(!this.pacified){
+			this.textx = this.x;
+			this.texty = this.y;
+			player.score++;
+		}   
+		this.pacified = true;
+		d.fillText("Pacified!",this.textx,this.texty);
+		
+		this.rend = false;
 	}
 	
 	this.findGate = function(){
