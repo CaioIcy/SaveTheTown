@@ -26,7 +26,7 @@ var CIRCLE_SPEED = 0.003;
 var MOVEMENT_START_POSITION = (3*Math.PI)/2;
 var X_SHIFT = 390;
 var Y_SHIFT = 290;
-var PLAYER_RADIUS = 14;
+var PLAYER_RADIUS = 100;
 
 //Enemies constants
 var ENEMY_STARTING_X = -300;

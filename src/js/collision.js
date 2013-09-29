@@ -15,3 +15,19 @@ function circleCollision(circle1, circle2){
 	return result;
 	
 }
+
+function collision(obj1, obj2)
+{
+	if( (obj2.x > obj1.x  && obj2.x < obj1.x + obj1.radius) || 	
+	    (obj2.x < obj1.x && obj2.x+obj2.radius > obj1.x) )		
+	{
+		//alert(obj2.y < obj1.y);
+		if( (obj2.y > obj1.y && obj2.y-obj2.radius < obj1.y) ||				
+		    (obj2.y < obj1.y && obj2.y+obj2.radius > obj1.y - obj1.radius) )
+		{
+			return true;
+		}
+	}	
+
+	return false;
+}

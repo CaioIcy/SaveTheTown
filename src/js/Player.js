@@ -7,8 +7,11 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	this.posMovementStart = posMovementStart;
 	this.posX = posX;
 	this.posY = posY;
+	this.x = posX;
+	this.y = posY;
+	this.radius = radius;
 	this.sprite = sprite;
-	this.movingToGate = 0;
+	this.movingToGate = PURPLE_GATE;
 	this.radius = radius;
 	this.currentGate = PURPLE_GATE;
 	this.signal="+"
@@ -33,11 +36,11 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 			else if(this.signal=="+")
 				this.posMovementStart += this.speed;
 		}
-		else if (this.movingToGate==BLUE_GATE && this.posX.toFixed(1) != 390.0 && this.posY.toFixed(1) != 520.0){
+		else if (this.movingToGate==BLUE_GATE && !((this.posX.toFixed(1) >= 389.0 && this.posX.toFixed(1) < 391.0) && (this.posY.toFixed(1) >= 519.0 && this.posY.toFixed(1) < 392.0))){
 			this.posX = (Math.cos(this.posMovementStart) * this.amplitudeX) + X_SHIFT;
 			this.posY = (Math.sin(this.posMovementStart) * this.amplitudeY) + Y_SHIFT;
 			if(this.signal=="-")
-				his.posMovementStart -= this.speed;
+				this.posMovementStart -= this.speed;
 			else if(this.signal=="+")
 				this.posMovementStart += this.speed;
 		}
@@ -63,8 +66,8 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 				this.currentGate = GOLD_GATE;
 		}
 				
-		else if(this.posX >= BLUE_GATE_X_POSITION && this.posX <= BLUE_GATE_X_POSITION + blue_gate.width){
-			if(this.posY >= BLUE_GATE_Y_POSITION && this.posY <= BLUE_GATE_Y_POSITION + blue_gate.height)
+		else if(this.posX >= 357 && this.posX < 439){
+			if(this.posY >= 497 && this.posY < 579)
 				this.currentGate = BLUE_GATE;
 		}
 				
@@ -129,14 +132,16 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, posX, posY, rad
 	
 		this.getDirection();
 		
-		if(this.movingToGate != this.currentGate ){	
-			this.isMoving = true;
+		if(this.movingToGate == this.currentGate ){	
+			this.isMoving = false;
 		}
-			
+		else this.isMoving = true;
+		
+		//alert(this.movingToGate + " == " + this.currentGate);
+		
 		if(this.isMoving == true){
 			this.move();
 		}
-
 	};
 	
 	//Render

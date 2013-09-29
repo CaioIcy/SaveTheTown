@@ -26,6 +26,13 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 			if(circleCollision(obj1,obj2)){
 			}
 	}
+	
+	this.verifyPlayerCollision = function(obj1,obj2){
+			if(circleCollision(obj1,obj2)){
+				alert("to de boa");
+			}
+	}
+	
 	//Update
 	this.update = function(){
 		
@@ -102,6 +109,11 @@ function Enemy( x, y, speed, radius, sprite, minX, maxX, timeCounter ) {
 	this.render = function(){
 		d.drawImage(this.sprite,this.x, this.y);
 	};
+	
+	this.bePacified = function(){
+		d.fillText(" X: " + player.x + "Y : " + player.y,this.x,this.y);
+
+	}
 	
 	this.findGate = function(){
 		
