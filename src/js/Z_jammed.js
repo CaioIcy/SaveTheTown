@@ -64,6 +64,16 @@ var RED_GATE_X_POSITION = 536;
 var RED_GATE_Y_POSITION = 411;
 var PURPLE_GATE_X_POSITION = 356;
 var PURPLE_GATE_Y_POSITION = 28;
+
+var MINIATURE_GOLD_GATE_X_POSITION = 670;
+var MINIATURE_GOLD_GATE_Y_POSITION = 50;
+var MINIATURE_BLUE_GATE_X_POSITION = 670;
+var MINIATURE_BLUE_GATE_Y_POSITION = 90;
+var MINIATURE_RED_GATE_X_POSITION = 670;
+var MINIATURE_RED_GATE_Y_POSITION = 130;
+var MINIATURE_PURPLE_GATE_X_POSITION = 670;
+var MINIATURE_PURPLE_GATE_Y_POSITION = 170;
+
 var GATE_HEALTH = 100;
 
 var GOLD_GATE_X_CENTER = 217;
@@ -211,12 +221,11 @@ function Gate( x, y, hp, radius, sprite){
 	this.x= x;
 	this.y= y;
 	this.health= hp;
-	this.sprite;
+	this.sprite=sprite;
 	this.radius = radius;
 	
 	this.render = function(){
 		d.drawImage(sprite, x, y, sprite.width, sprite.height);
-		d.drawImage(sprite, 600, 100, 30, 30);
 	};
 }
 //Enemy Class
@@ -543,6 +552,17 @@ function render(){
 
 	d.drawImage(background_grass, 0, 0);
 	d.drawImage(city.sprite, 149, 48);
+	
+	d.drawImage(gate[0].sprite, MINIATURE_PURPLE_GATE_X_POSITION, MINIATURE_PURPLE_GATE_Y_POSITION, 30, 30);
+	d.drawImage(gate[1].sprite, MINIATURE_GOLD_GATE_X_POSITION, MINIATURE_GOLD_GATE_Y_POSITION, 30, 30);
+	d.drawImage(gate[2].sprite, MINIATURE_BLUE_GATE_X_POSITION, MINIATURE_BLUE_GATE_Y_POSITION, 30, 30);
+	d.drawImage(gate[3].sprite, MINIATURE_RED_GATE_X_POSITION, MINIATURE_RED_GATE_Y_POSITION, 30, 30);
+	
+	drawBar(MINIATURE_PURPLE_GATE_X_POSITION + 38, MINIATURE_PURPLE_GATE_Y_POSITION + 5, 80, 20, 80, true, "#762A9C");
+	drawBar(MINIATURE_GOLD_GATE_X_POSITION + 38, MINIATURE_GOLD_GATE_Y_POSITION + 5, 80, 20, 80, true, "#878A00");
+	drawBar(MINIATURE_BLUE_GATE_X_POSITION + 38, MINIATURE_BLUE_GATE_Y_POSITION + 5, 80, 20, 80, true, "#0657FF");
+	drawBar(MINIATURE_RED_GATE_X_POSITION + 38, MINIATURE_RED_GATE_Y_POSITION + 5, 80, 20, 80, true, "#C70035");
+
 	
 	//render player
 	player.render();
