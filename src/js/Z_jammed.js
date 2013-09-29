@@ -34,11 +34,12 @@ icon_red_gate.src = "res/images/red_tower_icon.png";
 var playerSprite = new Image();
 playerSprite.src = "res/images/player.png";
 
+var broken_gate = new Image();
+broken_gate.src = "res/images/broken_gate.png";
+
 var troll = new Image();
 troll.src = "res/images/troll.png";
-
-var brokenGate = new Image();
-brokenGate.src = "res/images/broken_gate.png";//This script shamefully contains global constants and variables
+//This script shamefully contains global constants and variables
 
 var pressedKeys = [];
 var paused = false;
@@ -244,7 +245,12 @@ function Gate( x, y, hp, radius, sprite, icon){
 	this.radius = radius;
 	this.cooldown = COOLDOWN;
 	
+	this.setSprite = function(sprt){
+		this.sprite = sprt;
+	};
+	
 	this.destroyGate = function(){
+		this.setSprite(broken_gate);
 		this.health = 0;
 		this.cooldown--;
 		if(this.cooldown<=0){
@@ -258,9 +264,7 @@ function Gate( x, y, hp, radius, sprite, icon){
 		d.drawImage(sprite, x, y, sprite.width, sprite.height);
 	};
 	
-	this.setSprite = function(sprite){
-		this.sprite = sprite;
-	};
+	
 	
 }
 //Enemy Class
@@ -558,7 +562,7 @@ function Keyboard(){
 		
 		//WHAT
 		if(pressedKeys[VK_B]){
-			gate[3].setSprite(brokenSprite);
+			d.drawImage(broken_gate, 30, 30);
 		}
 		else if(!pressedKeys[VK_B]){
 		}
@@ -599,7 +603,6 @@ function update(){
 			if(enemy[j].collidingWithGate){
 				gate[i].health--;
 				if(gate[i].health <= 0){
-					gate[i].setSprite(brokenGate);
 					gate[i].destroyGate();
 				}
 			}

@@ -33,8 +33,8 @@ icon_red_gate.src = "res/images/red_tower_icon.png";
 var playerSprite = new Image();
 playerSprite.src = "res/images/player.png";
 
+var broken_gate = new Image();
+broken_gate.src = "res/images/broken_gate.png";
+
 var troll = new Image();
 troll.src = "res/images/troll.png";
-
-var brokenGate = new Image();
-brokenGate.src = "res/images/broken_gate.png";

@@ -36,7 +36,7 @@ function Keyboard(){
 		
 		//WHAT
 		if(pressedKeys[VK_B]){
-			gate[3].setSprite(brokenSprite);
+			d.drawImage(broken_gate, 30, 30);
 		}
 		else if(!pressedKeys[VK_B]){
 		}

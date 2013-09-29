@@ -31,7 +31,6 @@ function update(){
 			if(enemy[j].collidingWithGate){
 				gate[i].health--;
 				if(gate[i].health <= 0){
-					gate[i].setSprite(brokenGate);
 					gate[i].destroyGate();
 				}
 			}
