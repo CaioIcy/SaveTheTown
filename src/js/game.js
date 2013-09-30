@@ -33,7 +33,6 @@ function update(){
 				else {
 					player.health -= 0.01;
 				}
-				if(player.health<=0)gameOver();
 				if(gate[i].health <= 0 && gate[i].health >= -20){
 					//alert("destroy");
 					gate[i].destroyGate();

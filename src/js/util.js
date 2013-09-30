@@ -1,8 +1,6 @@
 //This script contains anything
 
-function gameOver(){
-	alert("GAME OVER, please refresh! no time to program :D");
-}
+
 
 function textGateHealth(){
 	d.fillStyle="white";

@@ -36,7 +36,6 @@ creditsImage.src = "res/images/credit.png";
 
 			window.setInterval("update()",60/1000);
 			window.setInterval("render()",1);
-
 	}
 	
 }

@@ -125,8 +125,15 @@ function Player(amplitudeX, amplitudeY, speed, posMovementStart, x, y, radius, s
 		
 	}
 	
+	this.gameOver = function(){
+			
+	
+	}
+	
 	//Update
 	this.update = function(){
+		
+		
 	
 		if(this.health<=1)this.health=0;
 	
