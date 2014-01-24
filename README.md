@@ -1,4 +1,4 @@
-undefined
+Save The Town
 =============
 
-i am a little riceball
+This game was developed as part of Indie Speed Run 2013 (www.indiespeedrun.com).
